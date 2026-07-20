@@ -40,7 +40,7 @@
     </div>
   </nav>
 
-  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[480px] flex items-center justify-center" style="background: linear-gradient(rgba(12,74,110,0.75), rgba(14,165,233,0.65)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop') center/cover;">
+  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[480px] flex items-center justify-center" style="background: linear-gradient(rgba(12,74,110,0.65), rgba(14,165,233,0.55)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
     <div class="relative z-10">
       <p class="text-sm tracking-widest uppercase mb-2 opacity-90">6–23 באוגוסט 2026</p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
@@ -56,11 +56,6 @@
   <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold text-center mb-8">מפת הטיול</h2>
     <div class="grid md:grid-cols-3 gap-6 mb-8">
-      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
-        <div class="text-3xl mb-2">🏛️</div>
-        <h3 class="font-bold text-lg">וינה</h3>
-        <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
-      </div>
       <div class="region-card bg-white rounded-2xl shadow p-6 border ring-2 ring-alpine-400 cursor-pointer">
         <div class="text-3xl mb-2">🏔️</div>
         <h3 class="font-bold text-lg">טירול · צילרטאל</h3>
@@ -70,6 +65,11 @@
         <div class="text-3xl mb-2">🌲</div>
         <h3 class="font-bold text-lg">זלצבורג · פלחאו</h3>
         <p class="text-sm text-slate-500">16–22/8 (6 לילות)</p>
+      </div>
+      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
+        <div class="text-3xl mb-2">🏛️</div>
+        <h3 class="font-bold text-lg">וינה</h3>
+        <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
       </div>
     </div>
     <div id="map" style="height: 400px;" class="rounded-xl shadow"></div>
@@ -189,7 +189,7 @@
         </div>
       </div>
 
-      <h3 class="text-lg font-bold text-orange-600 mb-3">מעבר טירול → זלצבורג</h3>
+      <h3 class="text-lg font-bold text-orange-600 mb-3">מעבר טירול ← זלצבורג</h3>
       <div class="space-y-3 mb-8">
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
@@ -298,23 +298,34 @@
       <div class="bg-white rounded-xl p-5 shadow-sm border">
         <h3 class="font-bold mb-3">👕 בגדים</h3>
         <ul class="space-y-1">
-          <li><input type="checkbox" class="mr-2"> בגדים להחלפה</li>
-          <li><input type="checkbox" class="mr-2"> מעילים חמים</li>
+          <li><input type="checkbox" class="mr-2"> בגדים להחלפה (לכל יום)</li>
+          <li><input type="checkbox" class="mr-2"> מעילים חמים / פליז</li>
           <li><input type="checkbox" class="mr-2"> בגדי ים + מגבות</li>
+          <li><input type="checkbox" class="mr-2"> נעלי הליכה נוחות</li>
+          <li><input type="checkbox" class="mr-2"> כובע / כובעי שמש</li>
+          <li><input type="checkbox" class="mr-2"> גרביים נוספים</li>
         </ul>
       </div>
       <div class="bg-white rounded-xl p-5 shadow-sm border">
         <h3 class="font-bold mb-3">🎒 תיק יומי</h3>
         <ul class="space-y-1">
-          <li><input type="checkbox" class="mr-2"> תיק בריכה</li>
-          <li><input type="checkbox" class="mr-2"> מזומן</li>
+          <li><input type="checkbox" class="mr-2"> תיק בריכה / תרמיל</li>
+          <li><input type="checkbox" class="mr-2"> מזומן (יורו)</li>
+          <li><input type="checkbox" class="mr-2"> בקבוקי מים</li>
+          <li><input type="checkbox" class="mr-2"> חטיפים לדרך</li>
+          <li><input type="checkbox" class="mr-2"> קרם הגנה</li>
+          <li><input type="checkbox" class="mr-2"> משקפי שמש</li>
         </ul>
       </div>
       <div class="bg-white rounded-xl p-5 shadow-sm border">
-        <h3 class="font-bold mb-3">📋 מסמכים</h3>
+        <h3 class="font-bold mb-3">📋 מסמכים + אחר</h3>
         <ul class="space-y-1">
           <li><input type="checkbox" class="mr-2"> דרכונים</li>
           <li><input type="checkbox" class="mr-2"> אישורי מלון</li>
+          <li><input type="checkbox" class="mr-2"> אישורי רכב / ביטוח</li>
+          <li><input type="checkbox" class="mr-2"> כרטיסי טיסה</li>
+          <li><input type="checkbox" class="mr-2"> תרופות / ערכת עזרה ראשונה</li>
+          <li><input type="checkbox" class="mr-2"> מטענים + מתאמים</li>
         </ul>
       </div>
     </div>
