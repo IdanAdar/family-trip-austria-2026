@@ -6,12 +6,11 @@ body { font-family: 'Heebo', system-ui, sans-serif; }
 .day-card:hover { transform: translateY(-2px); }
 .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
 .accordion-content.open { max-height: none; overflow: visible; height: auto; }
-#map { height: 400px; border-radius: 1rem; }
+#map { height: 400px !important; border-radius: 1rem; width: 100%; }
 .tag {
   display: inline-flex; align-items: center; gap: 0.25rem;
   padding: 0.15rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
 }
-/* Better inner spacing for itinerary cards */
 .day-card button.accordion-btn {
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
