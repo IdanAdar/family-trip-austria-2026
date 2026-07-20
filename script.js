@@ -23,36 +23,45 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-// All places from the itinerary
+// All places from the daily planner + key options
 const allPlaces = [
-  // Vienna
-  { name: 'וינה (שדה תעופה)', coords: [48.1103, 16.5697] },
+  // ——— Vienna ———
+  { name: 'וינה · שדה התעופה (NH)', coords: [48.1103, 16.5697] },
+  { name: 'פראטר (Prater)', coords: [48.2167, 16.3958] },
 
-  // Tyrol
+  // ——— On the way to Tyrol ———
+  { name: 'Motorikpark Ansfelden', coords: [48.212, 14.289] },
+  { name: 'SEP / BILLA (Salzkammergut)', coords: [47.95, 13.65] },
+
+  // ——— Tyrol / Zillertal ———
   { name: 'Chalet Wildruh', coords: [47.233, 11.866] },
-  { name: "Ellmi's Zauberwelt", coords: [47.51, 12.30] },
-  { name: 'מכרה הכסף (שוואץ)', coords: [47.35, 11.71] },
-  { name: 'Hexenwasser Söll', coords: [47.51, 12.19] },
-  { name: 'קיצביל', coords: [47.45, 12.39] },
-  { name: 'Swarovski Kristallwelten', coords: [47.30, 11.60] },
-  { name: 'Achensee', coords: [47.45, 11.72] },
-  { name: 'Spieljochbahn', coords: [47.25, 11.85] },
-  { name: 'Rosenalm', coords: [47.20, 11.85] },
-  { name: 'Ahornbahn / Mountopolis', coords: [47.17, 11.86] },
-  { name: 'Erlebnissennerei', coords: [47.18, 11.88] },
-  { name: 'Erlebnistherme Zillertal', coords: [47.28, 11.88] },
+  { name: "Ellmi's Zauberwelt", coords: [47.512, 12.303] },
+  { name: 'Erlebnistherme Zillertal', coords: [47.283, 11.875] },
+  { name: 'מכרה הכסף (שוואץ)', coords: [47.351, 11.708] },
+  { name: 'DEZ Innsbruck + Smyths', coords: [47.263, 11.432] },
+  { name: 'Hexenwasser Söll', coords: [47.505, 12.192] },
+  { name: 'קיצביל (Kitzbühel)', coords: [47.447, 12.392] },
+  { name: 'Swarovski Kristallwelten', coords: [47.294, 11.604] },
+  { name: 'Achensee / Atoll', coords: [47.448, 11.722] },
+  { name: 'Spieljochbahn', coords: [47.248, 11.852] },
+  { name: 'Rosenalm + Arena Coaster', coords: [47.198, 11.848] },
+  { name: 'Ahornbahn / Mountopolis', coords: [47.168, 11.863] },
+  { name: 'Erlebnissennerei Zillertal', coords: [47.178, 11.885] },
 
-  // Salzburg
-  { name: 'פלחאו', coords: [47.345, 13.392] },
-  { name: 'מפלי קרימל', coords: [47.21, 12.17] },
+  // ——— Transition day ———
+  { name: 'מפלי קרימל', coords: [47.211, 12.172] },
+  { name: 'Triassic Park', coords: [47.485, 12.545] },
+
+  // ——— Salzburg region ———
+  { name: 'פלחאו (Phantasia)', coords: [47.345, 13.392] },
   { name: 'Salzburg Zoo', coords: [47.804, 13.052] },
-  { name: "Toni's Almspielplatz", coords: [47.39, 13.15] },
-  { name: 'Therme Amadé', coords: [47.34, 13.39] },
-  { name: "Flori's Path", coords: [47.35, 13.39] },
-  { name: 'Jägersee', coords: [47.22, 13.15] },
-  { name: 'Gosausee', coords: [47.54, 13.51] },
-  { name: 'קרחון קיצשטיינהורן', coords: [47.20, 12.68] },
-  { name: 'Hopsiland Planai', coords: [47.39, 13.69] },
+  { name: "Toni's Almspielplatz", coords: [47.392, 13.148] },
+  { name: 'Therme Amadé', coords: [47.338, 13.395] },
+  { name: "Flori's Path", coords: [47.352, 13.395] },
+  { name: 'Jägersee', coords: [47.223, 13.155] },
+  { name: 'Gosausee', coords: [47.538, 13.508] },
+  { name: 'קרחון קיצשטיינהורן', coords: [47.198, 12.685] },
+  { name: 'Hopsiland Planai', coords: [47.392, 13.688] },
 ];
 
 // Map
@@ -66,7 +75,7 @@ if (mapEl) {
   }).addTo(map);
 
   allPlaces.forEach(p => {
-    L.marker(p.coords).addTo(map).bindPopup(p.name);
+    L.marker(p.coords).addTo(map).bindPopup(`<strong>${p.name}</strong>`);
   });
 }
 
@@ -85,7 +94,7 @@ if (mapCards.length && map) {
       } else if (title.includes('זלצבורג')) {
         map.flyTo([47.35, 13.30], 9);
       } else if (title.includes('וינה')) {
-        map.flyTo([48.11, 16.57], 11);
+        map.flyTo([48.15, 16.40], 11);
       }
     });
   });
