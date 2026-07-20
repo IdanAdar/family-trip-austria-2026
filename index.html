@@ -43,6 +43,29 @@
     .nav-btn:hover { background: #e2e8f0; }
     .nav-btn.gmaps { background: #eff6ff; color: #1d4ed8; }
     .nav-btn.gmaps:hover { background: #dbeafe; }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #0284c7;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -348,7 +371,7 @@
           <div class="font-bold mb-3">שישי 14/8 · Rosenalm</div>
           <div class="grid sm:grid-cols-2 gap-4">
             <div class="place-card">
-              <img src="https://www.tyrol.com/images/f1aJqN7BRNU/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZzbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9yb3NlbmFsbWJhaG4temlsbGVydGFsLXdhbmRlcm4uanBn" alt="Rosenalm">
+              <img src="https://www.tyrol.com/images/f1aJqN7BRNU/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9yb3NlbmFsbWJhaG4temlsbGVydGFsLXdhbmRlcm4uanBn" alt="Rosenalm">
               <div class="p-3">
                 <h4 class="font-bold text-sm">🌲 Rosenalm</h4>
                 <p class="text-xs text-slate-600 mt-0.5">טירת האשוח · כלול ב-Activecard</p>
@@ -378,7 +401,7 @@
           <div class="font-bold mb-3">שבת 15/8 · Ahornbahn</div>
           <div class="grid sm:grid-cols-2 gap-4">
             <div class="place-card">
-              <img src="https://www.tyrol.com/images/k33Nor7exY0/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZzbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9Ta3lSaWRlJTIwQWhvcm5fJUMyJUE5TWF5cmhvZm5lciUyMEJlcmdiYWhuZW4lMjAlMjgyJTI5LmpwZw" alt="Ahornbahn">
+              <img src="https://www.tyrol.com/images/k33Nor7exY0/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9Ta3lSaWRlJTIwQWhvcm5fJUMyJUE5TWF5cmhvZm5lciUyMEJlcmdiYWhuZW4lMjAlMjgyJTI5LmpwZw" alt="Ahornbahn">
               <div class="p-3">
                 <h4 class="font-bold text-sm">🚡 Ahornbahn / Mountopolis</h4>
                 <p class="text-xs text-slate-600 mt-0.5">כלול ב-Activecard · מופע עופות דורסים</p>
@@ -707,11 +730,26 @@
     <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">
+    ↑
+  </button>
+
   <script>
     function translatePage(lang) {
       var url = encodeURIComponent(window.location.href);
       window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
     }
+
+    // Back to top button visibility
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
   </script>
   <script src="script.js"></script>
 </body>
