@@ -35,14 +35,16 @@
     </div>
   </nav>
 
-  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #0c4a6e, #0ea5e9);">
-    <p class="text-sm tracking-widest uppercase mb-2 opacity-80">6–23 באוגוסט 2026</p>
-    <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
-    <p class="text-xl mb-8 opacity-90">וינה · עמק הצילר · חבל זלצבורג</p>
-    <div id="countdown" class="flex justify-center gap-6 text-center">
-      <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-80">ימים</div></div>
-      <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-80">שעות</div></div>
-      <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-80">דקות</div></div>
+  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[480px] flex items-center justify-center" style="background: linear-gradient(rgba(12,74,110,0.7), rgba(14,165,233,0.6)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&h=900&fit=crop') center/cover;">
+    <div class="relative z-10">
+      <p class="text-sm tracking-widest uppercase mb-2 opacity-90">6–23 באוגוסט 2026</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
+      <p class="text-xl mb-8 opacity-90">וינה · עמק הצילר · חבל זלצבורג</p>
+      <div id="countdown" class="flex justify-center gap-6 text-center">
+        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-80">ימים</div></div>
+        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-80">שעות</div></div>
+        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-80">דקות</div></div>
+      </div>
     </div>
   </header>
 
@@ -73,27 +75,37 @@
       <h2 class="text-3xl font-bold text-center mb-2">המסלול יום-יום</h2>
       <p class="text-center text-slate-500 mb-8">לחץ על יום כדי לפתוח פרטים</p>
 
-      <h3 class="text-lg font-bold text-green-700 mb-3">טירול · צילרטאל</h3>
+      <h3 class="text-lg font-bold text-green-700 mb-3">טירול · צילרטאל (8–16/8)</h3>
       <div class="space-y-3 mb-10">
+        <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
+            <div><span class="font-bold">שבת 8/8</span> <span class="text-slate-500 text-sm">· נסיעה לטירול</span></div>
+            <span class="text-alpine-500">+</span>
+          </button>
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
+            <p>נסיעה מווינה ל-Chalet Wildruh</p>
+            <p>עצירות בדרך: Motorikpark + SEP</p>
+          </div>
+        </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div><span class="font-bold">ראשון 9/8</span> <span class="text-slate-500 text-sm">· Ellmi's Zauberwelt</span></div>
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
-            <p>🪄 Ellmi's Zauberwelt (עולם הקסמים)</p>
-            <p>ארוחת צהריים: Restaurant BergKaiser</p>
-            <p>אחה"צ: Erlebnistherme Zillertal</p>
+            <p>🪄 Ellmi's Zauberwelt</p>
+            <p>ארוחת צהריים BergKaiser</p>
+            <p>Erlebnistherme Zillertal</p>
           </div>
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
-            <div><span class="font-bold">שני 10/8</span> <span class="text-slate-500 text-sm">· מכרה הכסף</span></div>
+            <div><span class="font-bold">שני 10/8</span> <span class="text-slate-500 text-sm">· מכרה הכסף + DEZ</span></div>
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>⛏️ מכרה הכסף בשוואץ</p>
-            <p>קניות ב-DEZ Innsbruck + Smyths Toys</p>
+            <p>DEZ Innsbruck + Smyths Toys</p>
           </div>
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
@@ -103,7 +115,7 @@
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>🧙 Hexenwasser Söll</p>
-            <p>ביקור בעיירה קיצביל</p>
+            <p>קיצביל (Kitzbühel)</p>
           </div>
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
@@ -122,7 +134,7 @@
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
-            <p>🚡 Spieljochbahn (הר החושים)</p>
+            <p>🚡 Spieljochbahn</p>
           </div>
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
@@ -136,16 +148,27 @@
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
-            <div><span class="font-bold">שבת 15/8</span> <span class="text-slate-500 text-sm">· Ahornbahn</span></div>
+            <div><span class="font-bold">שבת 15/8</span> <span class="text-slate-500 text-sm">· Ahornbahn + מופע עופות</span></div>
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>🚡 Ahornbahn + מופע עופות דורסים</p>
           </div>
         </div>
+        <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
+            <div><span class="font-bold">ראשון 16/8</span> <span class="text-slate-500 text-sm">· מעבר לזלצבורג</span></div>
+            <span class="text-alpine-500">+</span>
+          </button>
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
+            <p>אפשרות א': מפלי קרימל</p>
+            <p>אפשרות ב': Triassic Park</p>
+            <p>הגעה לפלחאו</p>
+          </div>
+        </div>
       </div>
 
-      <h3 class="text-lg font-bold text-purple-700 mb-3">זלצבורג · פלחאו</h3>
+      <h3 class="text-lg font-bold text-purple-700 mb-3">זלצבורג · פלחאו (16–22/8)</h3>
       <div class="space-y-3">
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
@@ -162,7 +185,7 @@
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
-            <p>🎠 Toni's Almspielplatz</p>
+            <p>🎠 Toni's Almspielplatz (סגור ברביעי-חמישי!)</p>
             <p>Therme Amadé</p>
           </div>
         </div>
@@ -186,11 +209,22 @@
         </div>
         <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
           <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
-            <div><span class="font-bold">שישי 21/8</span> <span class="text-slate-500 text-sm">· Hopsiland</span></div>
+            <div><span class="font-bold">שישי 21/8</span> <span class="text-slate-500 text-sm">· Hopsiland + אריזה</span></div>
             <span class="text-alpine-500">+</span>
           </button>
           <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>🎠 Hopsiland פלאנאי</p>
+            <p>אריזה לנסיעה חזרה</p>
+          </div>
+        </div>
+        <div class="day-card bg-slate-50 rounded-xl border overflow-hidden">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
+            <div><span class="font-bold">שבת 22/8</span> <span class="text-slate-500 text-sm">· חזרה לוינה</span></div>
+            <span class="text-alpine-500">+</span>
+          </button>
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
+            <p>נסיעה חזרה + החזרת רכב</p>
+            <p>לינה ב-NH Conference Center</p>
           </div>
         </div>
       </div>
@@ -224,35 +258,66 @@
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Swarovski">
         <div class="p-4">
           <h3 class="font-bold">Swarovski Kristallwelten</h3>
-          <a href="https://www.swarovski.com/en-GB/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.swarovski.com/en-GB/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Swarovski+Kristallwelten" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.30,11.60&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Mine">
         <div class="p-4">
           <h3 class="font-bold">מכרה הכסף בשוואץ</h3>
-          <a href="https://www.silberbergwerk.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.silberbergwerk.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Silberbergwerk+Schwaz" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.35,11.71&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Mountains">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Ahornbahn">
         <div class="p-4">
-          <h3 class="font-bold">Ahornbahn / צילרטאל</h3>
-          <a href="https://www.ahornbahn.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <h3 class="font-bold">Ahornbahn</h3>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.ahornbahn.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ahornbahn+Mayrhofen" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.23,11.87&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Hexenwasser">
         <div class="p-4">
           <h3 class="font-bold">Hexenwasser Söll</h3>
-          <a href="https://www.hexenwasser.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.hexenwasser.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hexenwasser+S%C3%B6ll" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.51,12.30&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Rosenalm">
         <div class="p-4">
           <h3 class="font-bold">Rosenalm + Arena Coaster</h3>
-          <a href="https://www.rosenalm.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.rosenalm.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Rosenalm+Zillertal" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.23,11.87&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Ellmi">
+        <div class="p-4">
+          <h3 class="font-bold">Ellmi's Zauberwelt</h3>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.ellmis.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Ellmi%27s+Zauberwelt" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.51,12.30&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
     </div>
@@ -263,35 +328,66 @@
         <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Krimml">
         <div class="p-4">
           <h3 class="font-bold">מפלי קרימל</h3>
-          <a href="https://www.krimml-wasserwelten.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.krimml-wasserwelten.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Krimml+Wasserf%C3%A4lle" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.21,12.17&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Kitzsteinhorn">
         <div class="p-4">
           <h3 class="font-bold">קרחון קיצשטיינהורן</h3>
-          <a href="https://www.kitzsteinhorn.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.kitzsteinhorn.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kitzsteinhorn" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.20,12.68&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Zoo">
         <div class="p-4">
           <h3 class="font-bold">Salzburg Zoo</h3>
-          <a href="https://www.salzburg-zoo.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.salzburg-zoo.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Salzburg+Zoo" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.81,13.05&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Toni">
         <div class="p-4">
           <h3 class="font-bold">Toni's Almspielplatz</h3>
-          <a href="https://www.tonis-alm.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.tonis-alm.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Toni%27s+Almspielplatz" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.34,13.39&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
       <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Hopsiland">
         <div class="p-4">
           <h3 class="font-bold">Hopsiland</h3>
-          <a href="https://www.hopsiland.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.hopsiland.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hopsiland+Planai" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.39,13.69&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop" class="w-full h-44 object-cover" alt="Therme">
+        <div class="p-4">
+          <h3 class="font-bold">Therme Amadé</h3>
+          <div class="flex gap-2 mt-2 flex-wrap">
+            <a href="https://www.therme-amade.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Therme+Amad%C3%A9" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.34,13.39&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+          </div>
         </div>
       </div>
     </div>
