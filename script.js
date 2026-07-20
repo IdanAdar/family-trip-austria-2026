@@ -23,20 +23,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-// Accordion
-document.querySelectorAll('.accordion-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const content = btn.nextElementSibling;
-    const isOpen = content.classList.contains('open');
-    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-    document.querySelectorAll('.accordion-btn span:last-child').forEach(s => s.textContent = '+');
-    if (!isOpen) {
-      content.classList.add('open');
-      btn.querySelector('span:last-child').textContent = '−';
-    }
-  });
-});
-
 // Map - must be initialized BEFORE the click handlers that use it
 const mapEl = document.getElementById('map');
 let map = null;
@@ -62,6 +48,7 @@ if (mapEl) {
 }
 
 // Make overview region cards clickable to zoom map
+// New visual order: 0 = Tyrol, 1 = Salzburg, 2 = Vienna
 const mapCards = document.querySelectorAll('#overview .region-card');
 if (mapCards.length && map) {
   mapCards.forEach((card, index) => {
@@ -70,11 +57,14 @@ if (mapCards.length && map) {
       card.classList.add('ring-2', 'ring-alpine-400');
 
       if (index === 0) {
-        map.flyTo([48.11, 16.57], 12);
-      } else if (index === 1) {
+        // טירול · צילרטאל
         map.flyTo([47.23, 11.87], 10);
-      } else if (index === 2) {
+      } else if (index === 1) {
+        // זלצבורג · פלחאו
         map.flyTo([47.34, 13.39], 10);
+      } else if (index === 2) {
+        // וינה
+        map.flyTo([48.11, 16.57], 12);
       }
     });
   });
