@@ -53,6 +53,16 @@
       display: inline-flex; align-items: center; gap: 0.25rem;
       padding: 0.15rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
     }
+    /* Better inner spacing for itinerary cards */
+    .day-card button.accordion-btn {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+    }
+    .day-card .accordion-content {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      padding-bottom: 1.25rem !important;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -152,14 +162,14 @@
         <h3 class="text-xl font-bold text-alpine-700 mb-4 flex items-center gap-2"><span class="bg-alpine-100 text-alpine-800 px-3 py-1 rounded-full text-sm">וינה</span> הגעה</h3>
         
         <div class="day-card bg-slate-50 rounded-xl border border-slate-200 mb-3 overflow-hidden">
-          <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div>
               <span class="font-bold">חמישי 6/8</span>
               <span class="text-slate-500 text-sm mr-2">· יום הטיסה</span>
             </div>
             <span class="text-alpine-500">+</span>
           </button>
-          <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>✈️ נחיתה · לינה ב-NH Conference Center בשדה התעופה (אישור 157195399)</p>
             <p>ארוחת ערב ממסעדות השדה</p>
             <p class="text-xs text-slate-500">* להוריד אפליקציית חניה · לקנות מדבקת גרמניה</p>
@@ -167,14 +177,14 @@
         </div>
 
         <div class="day-card bg-slate-50 rounded-xl border border-slate-200 mb-3 overflow-hidden">
-          <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div>
               <span class="font-bold">שישי 7/8</span>
               <span class="text-slate-500 text-sm mr-2">· יום בוינה</span>
             </div>
             <span class="text-alpine-500">+</span>
           </button>
-          <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>🥐 ארוחת בוקר במלון</p>
             <p>🎡 <strong>פראטר</strong> (צריך מזומן!!) + מפגש עם גיא וללי</p>
             <p>טל קופצת לקניון / מריההילפר</p>
@@ -183,14 +193,14 @@
         </div>
 
         <div class="day-card bg-slate-50 rounded-xl border border-slate-200 mb-3 overflow-hidden">
-          <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div>
               <span class="font-bold">שבת 8/8</span>
               <span class="text-slate-500 text-sm mr-2">· נסיעה לטירול</span>
             </div>
             <span class="text-alpine-500">+</span>
           </button>
-          <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>ארוחת בוקר במלון</p>
             <p>עצירה קצרה ב-Action (Schwechat)</p>
             <p>🛑 עצירה 1: <strong>Motorikpark Ansfelden</strong> (~11:30)</p>
@@ -206,16 +216,15 @@
         <h3 class="text-xl font-bold text-alpine-700 mb-4 flex items-center gap-2"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">טירול · צילרטאל</span> 8 לילות · Zillertal Activecard</h3>
 
         <div class="space-y-3">
-          <!-- Day 9/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">ראשון 9/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Ellmi's Zauberwelt</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🪄 <strong>Ellmi's Zauberwelt</strong> (עולם הקסמים) – 50 דק' · רכבל Hartkaiserbahn עד 17:00</p>
               <p>🍽️ ארוחת צהריים: Restaurant BergKaiser (צמוד לרכבל העליון, מרפסת מול Wilder Kaiser)</p>
               <p>🏊 אחה"צ: <strong>Erlebnistherme Zillertal</strong> (פוגן) – 50 דק' מאלמי · 6 דק' חזרה לצ'אלט</p>
@@ -223,16 +232,15 @@
             </div>
           </div>
 
-          <!-- Day 10/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שני 10/8</span>
                 <span class="text-slate-500 text-sm mr-2">· מכרה הכסף + DEZ</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>⛏️ <strong>מכרה הכסף בשוואץ</strong> – 22 דק' (מתאים ליום גשום! 12 מעלות בפנים)</p>
               <p>🍽️ ארוחת צהריים: Vapiano ב-DEZ Innsbruck</p>
               <p>🛍️ מרכז הקניות <strong>DEZ</strong> + חנות הצעצועים הענקית Smyths Toys</p>
@@ -241,16 +249,15 @@
             </div>
           </div>
 
-          <!-- Day 11/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שלישי 11/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Hexenwasser + קיצביל</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🧙 <strong>Hexenwasser Söll</strong> (עולם המכשפות) – 45 דק' · לא לעשות יום אחרי/לפני אלמי</p>
               <p>🍽️ Alpengasthof Hochsöll (בלב הפארק)</p>
               <p>🏘️ העיירה הציורית <strong>קיצביל (Kitzbühel)</strong> – 15 דק' · מדרחוב, בתי קפה, גלידה</p>
@@ -259,16 +266,15 @@
             </div>
           </div>
 
-          <!-- Day 12/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">רביעי 12/8</span>
                 <span class="text-slate-500 text-sm mr-2">· סברובסקי + Achensee</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>💎 <strong>עולם הקריסטלים סברובסקי</strong> – 18 דק' · לוודא מופע · food truck + מופעי קרקס</p>
               <p>🍽️ נסיעה ל-Achensee · מסעדה La Vita è Bella ב-Maurach + טיול על הטיילת</p>
               <p>🎡 Achensee – גן שעשועים Family Eldorado · סירות פדלים</p>
@@ -277,16 +283,15 @@
             </div>
           </div>
 
-          <!-- Day 13/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">חמישי 13/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Spieljochbahn (הר החושים)</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🚡 <strong>Spieljochbahn</strong> – 7 דק' · כלול ב-Zillertal Activecard</p>
               <p>🍽️ Mountain Loft Spieljoch (בתוך התחנה העליונה)</p>
               <p>🏊 Erlebnistherme Zillertal · 6 דק' חזרה</p>
@@ -294,16 +299,15 @@
             </div>
           </div>
 
-          <!-- Day 14/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שישי 14/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Rosenalm + Arena Coaster</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🌲 <strong>Rosenalm (טירת האשוח)</strong> – 12 דק' · כלול בכרטיס</p>
               <p>🍽️ Berghotel Hochzillertal (2 דק' הליכה מהטירה, נפתחת ב-14:00, דירוג 4.8)</p>
               <p>🎢 <strong>Arena Coaster</strong> (מגלשת הרים) – באותו מתחם</p>
@@ -312,16 +316,15 @@
             </div>
           </div>
 
-          <!-- Day 15/8 -->
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שבת 15/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Ahornbahn + מופע עופות</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🚡 <strong>Ahornbahn</strong> · כלול בכרטיס</p>
               <ul class="list-disc list-inside space-y-1 mr-2">
                 <li>מופע עופות דורסים (כל יום ב-14:00 חוץ משישי)</li>
@@ -342,14 +345,14 @@
       <div class="mb-8">
         <h3 class="text-xl font-bold text-alpine-700 mb-4 flex items-center gap-2"><span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">מעבר</span> טירול → זלצבורג</h3>
         <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-          <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div>
               <span class="font-bold">ראשון 16/8</span>
               <span class="text-slate-500 text-sm mr-2">· יום מעבר (2 אפשרויות)</span>
             </div>
             <span class="text-alpine-500">+</span>
           </button>
-          <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-3">
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-3">
             <div class="bg-white p-3 rounded-lg border">
               <p class="font-bold text-alpine-700">אפשרות א' – מפלי קרימל</p>
               <p>🌊 <strong>מפלי קרימל (Krimml)</strong> – 55 דק' (דרך אגרה)</p>
@@ -375,14 +378,14 @@
 
         <div class="space-y-3">
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שני 17/8</span>
                 <span class="text-slate-500 text-sm mr-2">· גן החיות של זלצבורג (עם סבתא)</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🦁 <strong>Salzburg Zoo</strong> – 40 דק' · מסעדה מצוינת בתוך הגן</p>
               <p>☕ עצירת קפה באגם: Pizzeria Da Moare (25 דק', על המים + טרמפולינות)</p>
               <p>אופציה: מגלשות Woodi Bob בדרך חזרה</p>
@@ -392,14 +395,14 @@
           </div>
 
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שלישי 18/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Toni's Almspielplatz + Therme Amadé</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🎠 <strong>Toni's Almspielplatz</strong> – 35 דק' · <span class="text-red-600 font-bold">סגור ברביעי וחמישי!!!</span></p>
               <p>מסלול גולות מעגלי תלול (2 ק"מ) + מתקני מים בפסגה</p>
               <p>🍽️ Karbachalm (צמוד למגרש המשחקים)</p>
@@ -409,14 +412,14 @@
           </div>
 
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">רביעי 19/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Flori's Path + Jägersee</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🌲 <strong>ההר של פלורי (Flori's Path)</strong> – 0 נסיעה · שביל משחקים אינטראקטיבי ביער, שטוח ונינוח</p>
               <p>🍽️ Waldgasthof (על השביל, מרפסת שמש)</p>
               <p>🦆 <strong>אגם יגר (Jägersee)</strong> – 25 דק' · הליכה מישורית, סירות משוטים, האכלת ברווזים · Kaiserschmarrn!</p>
@@ -426,14 +429,14 @@
           </div>
 
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">חמישי 20/8</span>
                 <span class="text-slate-500 text-sm mr-2">· קרחון קיצשטיינהורן</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>❄️ <strong>קרחון קיצשטיינהורן</strong> · Gletscherjet1 עד Top of Salzburg · Gletscherschuttle לשלג</p>
               <p>קולנוע + מנהרת הטבע (National Park Gallery + Cinema 3000)</p>
               <p>עצירה ב-Langwiedboden: פארק משחקי מים מעץ (Wasserspielplatz)</p>
@@ -444,14 +447,14 @@
           </div>
 
           <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-            <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+            <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
               <div>
                 <span class="font-bold">שישי 21/8</span>
                 <span class="text-slate-500 text-sm mr-2">· Hopsiland + אריזה</span>
               </div>
               <span class="text-alpine-500">+</span>
             </button>
-            <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+            <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
               <p>🎠 <strong>Hopsiland פלאנאי</strong> – 50 דק' · עולם הילדים הגבוה בשלאדמינג · רכבת Hopsi Express · מסלולי גולות · צעצועי מים!</p>
               <p>🍽️ Schafalm Schladming (בלב המתחם) · יש 6 בקתות לאורך המסלול</p>
               <p>🍽️ ערב: מסעדת Paulerei בפלחאו (לבדוק הזמנה)</p>
@@ -466,14 +469,14 @@
       <div>
         <h3 class="text-xl font-bold text-alpine-700 mb-4 flex items-center gap-2"><span class="bg-alpine-100 text-alpine-800 px-3 py-1 rounded-full text-sm">חזרה</span> לוינה</h3>
         <div class="day-card bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-          <button class="w-full text-right px-5 py-4 flex justify-between items-center accordion-btn">
+          <button class="w-full text-right px-6 py-4 flex justify-between items-center accordion-btn">
             <div>
               <span class="font-bold">שבת 22/8 – ראשון 23/8</span>
               <span class="text-slate-500 text-sm mr-2">· נסיעה לוינה + טיסה</span>
             </div>
             <span class="text-alpine-500">+</span>
           </button>
-          <div class="accordion-content px-5 pb-4 text-sm text-slate-700 space-y-2">
+          <div class="accordion-content px-6 pb-5 text-sm text-slate-700 space-y-2">
             <p>🚗 נסיעה חזרה לוינה · החזרת רכב (לפי הזמנה)</p>
             <p>🏨 לינה ב-NH Conference Center (אישור 157505241)</p>
             <p>✈️ טיסה הביתה ב-23/8</p>
