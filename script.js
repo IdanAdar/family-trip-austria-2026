@@ -101,7 +101,13 @@ if (mapEl) {
   }).addTo(map);
 
   allPlaces.forEach(p => {
-    L.marker(p.coords).addTo(map).bindPopup(`<strong>${p.name}</strong>`);
+    const marker = L.marker(p.coords).addTo(map);
+    const popupContent = `
+      <strong>${p.name}</strong><br>
+      <a href="https://www.google.com/maps/search/?api=1&query=${p.coords[0]},${p.coords[1]}" target="_blank" class="nav-btn gmaps text-xs inline-block mt-2">📍 Google Maps</a>
+      <a href="https://waze.com/ul?ll=${p.coords[0]},${p.coords[1]}&navigate=yes" target="_blank" class="nav-btn text-xs inline-block mt-2">Waze</a>
+    `;
+    marker.bindPopup(popupContent);
   });
 }
 
