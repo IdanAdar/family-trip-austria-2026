@@ -26,12 +26,24 @@
     .stay-card:hover { border-color: #0ea5e9; transform: translateY(-2px); }
     a.maps-link { color: #0284c7; text-decoration: none; font-size: 0.875rem; }
     a.maps-link:hover { opacity: 0.8; }
+    .translate-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.55rem;
+      border-radius: 0.4rem;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .translate-btn:hover { background: #f1f5f9; border-color: #94a3b8; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <nav class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#hero" class="font-bold text-alpine-800 text-lg">🏔️ אוסטריה 2026</a>
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
       <div class="hidden md:flex gap-5 text-sm font-medium">
         <a href="#overview" class="hover:text-alpine-600">סקירה</a>
         <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
@@ -39,6 +51,10 @@
         <a href="#stays" class="hover:text-alpine-600">לינה</a>
         <a href="#packing" class="hover:text-alpine-600">ציוד</a>
         <a href="#places" class="hover:text-alpine-600">מקומות</a>
+      </div>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
+        <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
       </div>
     </div>
   </nav>
@@ -449,6 +465,12 @@
     <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
   </footer>
 
+  <script>
+    function translatePage(lang) {
+      var url = encodeURIComponent(window.location.href);
+      window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
