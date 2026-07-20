@@ -1,25 +1,48 @@
 // Countdown
-const target = new Date('2026-08-06T00:00:00').getTime();
+const tripStart = new Date('2026-08-06T00:00:00').getTime();
+const tripEnd = new Date('2026-08-24T00:00:00').getTime(); // after 23/8
+
 function updateCountdown() {
   const now = Date.now();
-  const diff = target - now;
-  if (diff < 0) {
-    if (document.getElementById('d')) {
-      document.getElementById('d').textContent = '0';
-      document.getElementById('h').textContent = '0';
-      document.getElementById('m').textContent = '0';
-    }
+  const el = document.getElementById('countdown');
+  if (!el) return;
+
+  // After the trip ends
+  if (now >= tripEnd) {
+    el.innerHTML = '<p class="text-2xl md:text-3xl font-bold">הטיול הסתיים 🏔️</p>';
     return;
   }
+
+  // During the trip
+  if (now >= tripStart) {
+    el.innerHTML = '<p class="text-2xl md:text-3xl font-bold">הטיול התחיל! ✈️</p>';
+    return;
+  }
+
+  // Before the trip – countdown
+  const diff = tripStart - now;
   const d = Math.floor(diff / (1000 * 60 * 60 * 24));
   const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  if (document.getElementById('d')) {
-    document.getElementById('d').textContent = d;
-    document.getElementById('h').textContent = h;
-    document.getElementById('m').textContent = m;
+
+  const dEl = document.getElementById('d');
+  const hEl = document.getElementById('h');
+  const mEl = document.getElementById('m');
+
+  // If the structure was replaced earlier, restore the number boxes
+  if (!dEl || !hEl || !mEl) {
+    el.innerHTML =
+      '<div><div class="text-3xl font-bold" id="d">' + d + '</div><div class="text-xs opacity-90">ימים</div></div>' +
+      '<div><div class="text-3xl font-bold" id="h">' + h + '</div><div class="text-xs opacity-90">שעות</div></div>' +
+      '<div><div class="text-3xl font-bold" id="m">' + m + '</div><div class="text-xs opacity-90">דקות</div></div>';
+    return;
   }
+
+  dEl.textContent = d;
+  hEl.textContent = h;
+  mEl.textContent = m;
 }
+
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
