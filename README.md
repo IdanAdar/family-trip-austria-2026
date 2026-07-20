@@ -9,22 +9,3 @@
 האתר מוכן ל-GitHub Pages.
 
 1. Settings → Pages → Source: Deploy from a branch → main / (root)
-2. האתר יהיה זמין ב: https://idanadar.github.io/family-trip-austria-2026/
-
-**הערה חשובה:** הקובץ `index.html` הנוכחי בריפו הוא גרסה מקוצרת (בגלל מגבלות העלאה).  
-הקובץ **המלא** נמצא ב-artifacts של השיחה הזו (`/home/workdir/artifacts/austria-2026/index.html`).  
-העתק אותו לריפו (החלף את index.html) כדי לקבל את כל המסלול המפורט יום-יום, כולל כל האטרקציות, ציוד וטיפים.
-
-## תוכן האתר המלא
-
-- ספירה לאחור לטיסה
-- מפת אינטראקטיבית (Leaflet)
-- מסלול יום-יום מפורט (אקורדיון לכל יום)
-- פרטי לינה והשכרת רכב
-- טיפים וציוד חובה
-- RTL + עברית מלאה
-
-בהשראת [FamilyTrip2026](https://ingacherny.github.io/FamilyTrip2026/) של Inga Cherny.
-
----
-נבנה עבור עידן אדר · 2026
