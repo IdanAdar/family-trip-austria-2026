@@ -15,61 +15,29 @@
   <nav id="nav" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#hero" class="font-bold text-alpine-800 text-lg">🏔️ אוסטריה 2026</a>
-      <div class="hidden md:flex gap-6 text-sm font-medium">
-        <a href="#overview" class="hover:text-alpine-600">סקירה</a>
-        <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
-        <a href="#stays" class="hover:text-alpine-600">לינה</a>
-        <a href="#tips" class="hover:text-alpine-600">טיפים</a>
-        <a href="#packing" class="hover:text-alpine-600">ציוד</a>
-      </div>
     </div>
   </nav>
 
-  <header id="hero" class="relative hero-bg text-white pt-24 pb-16 px-4 min-h-[480px] bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Zillertal_Austria.jpg/1280px-Zillertal_Austria.jpg'); background-blend-mode: multiply;">
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+  <header id="hero" class="relative text-white pt-24 pb-16 px-4 min-h-[420px] bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Zillertal_Austria.jpg/1280px-Zillertal_Austria.jpg');">
     <div class="relative max-w-5xl mx-auto text-center z-10">
-      <p class="text-alpine-200 text-sm font-medium tracking-widest uppercase mb-2">6–23 באוגוסט 2026</p>
+      <p class="text-sm font-medium tracking-widest uppercase mb-2 opacity-80">6–23 באוגוסט 2026</p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
-      <p class="text-xl text-alpine-100 mb-8">וינה · עמק הצילר · חבל זלצבורג</p>
-      <div id="countdown" class="flex justify-center gap-6 text-center mb-8">
-        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs text-alpine-200">ימים</div></div>
-        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs text-alpine-200">שעות</div></div>
-        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs text-alpine-200">דקות</div></div>
+      <p class="text-xl mb-8 opacity-90">וינה · עמק הצילר · חבל זלצבורג</p>
+      <div id="countdown" class="flex justify-center gap-6 text-center">
+        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-80">ימים</div></div>
+        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-80">שעות</div></div>
+        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-80">דקות</div></div>
       </div>
     </div>
   </header>
 
-  <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-alpine-900 mb-8 text-center">מפת הטיול</h2>
-    <div id="map" class="shadow-lg mb-8"></div>
-  </section>
-
-  <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-alpine-900 mb-8 text-center">לינה</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <a href="https://www.nh-hotels.com/en/hotel/nh-vienna-airport" target="_blank" class="block bg-white rounded-2xl shadow-md overflow-hidden border">
-        <div class="bg-alpine-700 text-white p-4"><h3 class="font-bold">NH Conference Center</h3></div>
-        <div class="p-5 text-sm"><p>6–8/8 + 22–23/8</p></div>
-      </a>
-      <a href="https://www.booking.com/hotel/at/chalet-wildruh.en-gb.html" target="_blank" class="block bg-white rounded-2xl shadow-md overflow-hidden border">
-        <div class="bg-green-700 text-white p-4"><h3 class="font-bold">Chalet Wildruh</h3></div>
-        <div class="p-5 text-sm"><p>8–16/8</p></div>
-      </a>
-      <a href="https://www.booking.com/hotel/at/appartmenthaus-phantasia.en-gb.html" target="_blank" class="block bg-white rounded-2xl shadow-md overflow-hidden border">
-        <div class="bg-purple-700 text-white p-4"><h3 class="font-bold">Appartmenthaus Phantasia</h3></div>
-        <div class="p-5 text-sm"><p>16–22/8</p></div>
-      </a>
-    </div>
-  </section>
-
-  <!-- Key Places with REAL images -->
-  <section class="max-w-5xl mx-auto px-4 py-16 bg-white">
-    <h2 class="text-3xl font-bold text-alpine-900 mb-8 text-center">מקומות מרכזיים</h2>
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">מקומות מרכזיים</h2>
 
     <h3 class="text-xl font-bold text-green-700 mb-4">🏔️ טירול</h3>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
       <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Swarovski_Kristallwelten_Giant.jpg/800px-Swarovski_Kristallwelten_Giant.jpg" alt="Swarovski" class="w-full h-48 object-cover">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Wattens_-_Swarovski_Kristallwelten.jpg/800px-Wattens_-_Swarovski_Kristallwelten.jpg" alt="Swarovski Kristallwelten" class="w-full h-48 object-cover" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Swarovski_Kristallwelten_Giant.jpg/640px-Swarovski_Kristallwelten_Giant.jpg'">
         <div class="p-4">
           <h3 class="font-bold">Swarovski Kristallwelten</h3>
           <div class="flex gap-2 mt-3 flex-wrap">
@@ -78,8 +46,9 @@
           </div>
         </div>
       </div>
+
       <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Silver_mine_Schwaz.jpg/800px-Silver_mine_Schwaz.jpg" alt="Silberbergwerk" class="w-full h-48 object-cover">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Silver_mine_Schwaz.jpg/800px-Silver_mine_Schwaz.jpg" alt="Silberbergwerk Schwaz" class="w-full h-48 object-cover" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Silver_mine_Schwaz.jpg/640px-Silver_mine_Schwaz.jpg'">
         <div class="p-4">
           <h3 class="font-bold">מכרה הכסף בשוואץ</h3>
           <div class="flex gap-2 mt-3 flex-wrap">
@@ -88,33 +57,14 @@
           </div>
         </div>
       </div>
+
       <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Zillertal_Austria.jpg/800px-Zillertal_Austria.jpg" alt="Ahornbahn area" class="w-full h-48 object-cover">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Zillertal_Austria.jpg/800px-Zillertal_Austria.jpg" alt="Zillertal" class="w-full h-48 object-cover">
         <div class="p-4">
-          <h3 class="font-bold">Ahornbahn / צילרטאל</h3>
+          <h3 class="font-bold">צילרטאל / Ahornbahn</h3>
           <div class="flex gap-2 mt-3 flex-wrap">
             <a href="https://www.ahornbahn.at/" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Ahornbahn+Mayrhofen" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Kitzb%C3%BChel_Austria.jpg/800px-Kitzb%C3%BChel_Austria.jpg" alt="Kitzbühel" class="w-full h-48 object-cover" onerror="this.src='https://picsum.photos/id/1015/600/250'">
-        <div class="p-4">
-          <h3 class="font-bold">קיצביל</h3>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <a href="https://www.kitzbuehel.com/" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kitzb%C3%BChel" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ellmau_Austria.jpg/800px-Ellmau_Austria.jpg" alt="Ellmau / Ellmi" class="w-full h-48 object-cover" onerror="this.src='https://picsum.photos/id/1016/600/250'">
-        <div class="p-4">
-          <h3 class="font-bold">Ellmi's Zauberwelt (Ellmau)</h3>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <a href="https://www.ellmis.at/" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Ellmi%27s+Zauberwelt" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Zillertal" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
           </div>
         </div>
       </div>
@@ -123,7 +73,7 @@
     <h3 class="text-xl font-bold text-purple-700 mb-4">🌲 זלצבורג</h3>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Krimmler_Wasserf%C3%A4lle.jpg/800px-Krimmler_Wasserf%C3%A4lle.jpg" alt="Krimml Waterfalls" class="w-full h-48 object-cover">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Krimmler_Wasserf%C3%A4lle.jpg/800px-Krimmler_Wasserf%C3%A4lle.jpg" alt="Krimml Waterfalls" class="w-full h-48 object-cover" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Krimmler_Wasserf%C3%A4lle.jpg/640px-Krimmler_Wasserf%C3%A4lle.jpg'">
         <div class="p-4">
           <h3 class="font-bold">מפלי קרימל</h3>
           <div class="flex gap-2 mt-3 flex-wrap">
@@ -132,6 +82,7 @@
           </div>
         </div>
       </div>
+
       <div class="bg-white rounded-2xl shadow-md overflow-hidden">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kitzsteinhorn.jpg/800px-Kitzsteinhorn.jpg" alt="Kitzsteinhorn" class="w-full h-48 object-cover" onerror="this.src='https://picsum.photos/id/1018/600/250'">
         <div class="p-4">
@@ -142,31 +93,11 @@
           </div>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Salzburg_Zoo.jpg/800px-Salzburg_Zoo.jpg" alt="Salzburg Zoo" class="w-full h-48 object-cover" onerror="this.src='https://picsum.photos/id/1020/600/250'">
-        <div class="p-4">
-          <h3 class="font-bold">Salzburg Zoo</h3>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <a href="https://www.salzburg-zoo.at/" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Salzburg+Zoo" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
-          </div>
-        </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Schladming.jpg/800px-Schladming.jpg" alt="Hopsiland area" class="w-full h-48 object-cover" onerror="this.src='https://picsum.photos/id/1025/600/250'">
-        <div class="p-4">
-          <h3 class="font-bold">Hopsiland / Schladming</h3>
-          <div class="flex gap-2 mt-3 flex-wrap">
-            <a href="https://www.hopsiland.at/" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hopsiland+Planai" target="_blank" class="text-xs bg-slate-100 px-3 py-1 rounded-full">Google</a>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
-  <footer class="bg-alpine-900 text-alpine-100 py-8 text-center text-sm">
-    <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
+  <footer class="bg-slate-900 text-white py-8 text-center text-sm">
+    <p class="font-bold">אוסטריה 2026 · טיול משפחתי</p>
   </footer>
 
   <script src="script.js"></script>
