@@ -56,7 +56,7 @@
 
   <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold text-center mb-8">מפת הטיול</h2>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
       <div class="region-card bg-white rounded-2xl shadow p-6 border ring-2 ring-alpine-400 cursor-pointer">
         <div class="text-3xl mb-2">🏔️</div>
         <h3 class="font-bold text-lg">טירול · צילרטאל</h3>
@@ -73,7 +73,16 @@
         <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
       </div>
     </div>
-    <div id="map" style="height: 400px;" class="rounded-xl shadow"></div>
+
+    <!-- Filter buttons -->
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
+      <button data-map-filter="all" class="px-4 py-1.5 rounded-full text-sm font-medium bg-alpine-600 text-white shadow-sm">הכל</button>
+      <button data-map-filter="tyrol" class="px-4 py-1.5 rounded-full text-sm font-medium bg-white text-slate-700 border shadow-sm">טירול</button>
+      <button data-map-filter="salzburg" class="px-4 py-1.5 rounded-full text-sm font-medium bg-white text-slate-700 border shadow-sm">זלצבורג</button>
+      <button data-map-filter="vienna" class="px-4 py-1.5 rounded-full text-sm font-medium bg-white text-slate-700 border shadow-sm">וינה</button>
+    </div>
+
+    <div id="map" style="height: 420px;" class="rounded-xl shadow"></div>
   </section>
 
   <section id="itinerary" class="bg-white py-12">
@@ -367,7 +376,8 @@
           <h3 class="font-bold">Hopsiland</h3>
           <div class="flex gap-2 mt-2 flex-wrap">
             <a href="https://www.planai.at/en/activities/hopsiland-planai" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hopsiland+Planai" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hopsiland+Planai" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+            <a href="https://waze.com/ul?ll=47.39,13.69&navigate=yes" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Waze</a>
           </div>
         </div>
       </div>
