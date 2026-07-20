@@ -38,6 +38,7 @@ const allPlaces = [
   { name: "Ellmi's Zauberwelt", coords: [47.512, 12.303] },
   { name: 'Erlebnistherme Zillertal', coords: [47.283, 11.875] },
   { name: 'מכרה הכסף (שוואץ)', coords: [47.351, 11.708] },
+  { name: 'Harter Schleierwasserfall', coords: [47.28, 11.75] },
   { name: 'DEZ Innsbruck + Smyths', coords: [47.263, 11.432] },
   { name: 'Hexenwasser Söll', coords: [47.505, 12.192] },
   { name: 'קיצביל (Kitzbühel)', coords: [47.447, 12.392] },
@@ -55,13 +56,15 @@ const allPlaces = [
   // ——— Salzburg region ———
   { name: 'פלחאו (Phantasia)', coords: [47.345, 13.392] },
   { name: 'Salzburg Zoo', coords: [47.804, 13.052] },
-  { name: "Toni's Almspielplatz", coords: [47.392, 13.148] },
-  { name: 'Therme Amadé', coords: [47.338, 13.395] },
+  { name: 'Hopsiland Planai', coords: [47.392, 13.688] },
   { name: "Flori's Path", coords: [47.352, 13.395] },
+  { name: 'Funspace Flachau', coords: [47.345, 13.39] },
+  { name: 'טירת מאוטרנדורף', coords: [47.135, 13.678] },
   { name: 'Jägersee', coords: [47.223, 13.155] },
   { name: 'Gosausee', coords: [47.538, 13.508] },
   { name: 'קרחון קיצשטיינהורן', coords: [47.198, 12.685] },
-  { name: 'Hopsiland Planai', coords: [47.392, 13.688] },
+  { name: "Toni's Almspielplatz", coords: [47.392, 13.148] },
+  { name: 'Therme Amadé', coords: [47.338, 13.395] },
 ];
 
 // Map – start focused on Tyrol (matches default selected region card)
