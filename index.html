@@ -63,6 +63,8 @@
       padding-right: 1.5rem !important;
       padding-bottom: 1.25rem !important;
     }
+    .stay-card { transition: all 0.2s ease; }
+    .stay-card:hover { transform: scale(1.02); }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -491,7 +493,7 @@
   <section id="stays" class="max-w-5xl mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold text-alpine-900 mb-8 text-center">לינה</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100">
+      <a href="https://www.nh-hotels.com/en/hotel/nh-vienna-airport" target="_blank" class="stay-card block bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 hover:ring-2 hover:ring-alpine-400 transition-all">
         <div class="bg-alpine-700 text-white p-4">
           <h3 class="font-bold">NH Conference Center</h3>
           <p class="text-sm text-alpine-200">שדה התעופה וינה</p>
@@ -502,8 +504,8 @@
           <p class="text-xs text-slate-500">אישורים: 157195399 · 157505241</p>
           <p class="text-xs">משלמים במקום בהגעה הראשונה</p>
         </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 ring-2 ring-green-400">
+      </a>
+      <a href="https://www.booking.com/hotel/at/chalet-wildruh.en-gb.html" target="_blank" class="stay-card block bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 ring-2 ring-green-400 hover:ring-green-500 transition-all">
         <div class="bg-green-700 text-white p-4">
           <h3 class="font-bold">Chalet Wildruh</h3>
           <p class="text-sm text-green-200">Ziller · טירול</p>
@@ -513,8 +515,8 @@
           <p>הוזמן ומשולם דרך בוקינג</p>
           <p class="text-xs text-slate-500">בסיס מושלם לעמק הצילר</p>
         </div>
-      </div>
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100">
+      </a>
+      <a href="https://www.booking.com/hotel/at/appartmenthaus-phantasia.en-gb.html" target="_blank" class="stay-card block bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 hover:ring-2 hover:ring-purple-400 transition-all">
         <div class="bg-purple-700 text-white p-4">
           <h3 class="font-bold">Appartmenthaus Phantasia</h3>
           <p class="text-sm text-purple-200">פלחאו · זלצבורג</p>
@@ -524,7 +526,7 @@
           <p>לשלם בהעברה בנקאית או במזומן לג'וזי</p>
           <p class="text-xs text-slate-500">כרטיס אורח Flachau Card</p>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -611,10 +613,12 @@
   <!-- Key Places -->
   <section class="max-w-5xl mx-auto px-4 py-16 bg-white">
     <h2 class="text-3xl font-bold text-alpine-900 mb-8 text-center">מקומות מרכזיים</h2>
+    <div class="mb-8">
+      <img src="https://picsum.photos/id/1015/1200/400" alt="טירול וזלצבורג" class="w-full rounded-2xl shadow-md">
+    </div>
     <div class="grid md:grid-cols-2 gap-4 text-sm">
       <a href="https://www.google.com/maps/search/?api=1&query=Ellmi%27s+Zauberwelt" target="_blank" class="block bg-slate-50 hover:bg-slate-100 p-4 rounded-xl transition-colors">Ellmi's Zauberwelt (Google Maps)</a>
       <a href="https://waze.com/ul?ll=47.51,12.30&navigate=yes" target="_blank" class="block bg-slate-50 hover:bg-slate-100 p-4 rounded-xl transition-colors">Ellmi's Zauberwelt (Waze)</a>
-      <!-- Add more as needed -->
       <a href="https://www.swarovski.com/en-GB/" target="_blank" class="block bg-slate-50 hover:bg-slate-100 p-4 rounded-xl transition-colors">Swarovski Kristallwelten</a>
       <a href="https://www.krimml-wasserwelten.at/" target="_blank" class="block bg-slate-50 hover:bg-slate-100 p-4 rounded-xl transition-colors">מפלי קרימל</a>
       <a href="https://www.kitzsteinhorn.at/" target="_blank" class="block bg-slate-50 hover:bg-slate-100 p-4 rounded-xl transition-colors">קרחון קיצשטיינהורן</a>
