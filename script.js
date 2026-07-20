@@ -35,29 +35,22 @@ document.querySelectorAll('.accordion-btn').forEach(btn => {
 
 // Make overview region cards clickable to zoom map
 const mapCards = document.querySelectorAll('#overview .region-card');
-let activeCard = mapCards[1]; // default Tyrol
-mapCards.forEach((card, index) => {
-  card.addEventListener('click', () => {
-    // Remove ring from all
-    mapCards.forEach(c => c.classList.remove('ring-2', 'ring-alpine-400'));
-    // Add to clicked
-    card.classList.add('ring-2', 'ring-alpine-400');
-    activeCard = card;
+if (mapCards.length) {
+  mapCards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      mapCards.forEach(c => c.classList.remove('ring-2', 'ring-alpine-400'));
+      card.classList.add('ring-2', 'ring-alpine-400');
 
-    if (index === 0) {
-      map.flyTo([48.11, 16.57], 12); // Vienna
-    } else if (index === 1) {
-      map.flyTo([47.23, 11.87], 10); // Tyrol Zillertal
-    } else if (index === 2) {
-      map.flyTo([47.34, 13.39], 10); // Flachau / Salzburg
-    }
+      if (index === 0) {
+        map.flyTo([48.11, 16.57], 12);
+      } else if (index === 1) {
+        map.flyTo([47.23, 11.87], 10);
+      } else if (index === 2) {
+        map.flyTo([47.34, 13.39], 10);
+      }
+    });
   });
-});
-
-// Mobile menu
-document.getElementById('menuBtn').addEventListener('click', () => {
-  document.getElementById('mobileMenu').classList.toggle('hidden');
-});
+}
 
 // Map
 const map = L.map('map').setView([47.4, 12.5], 7);
