@@ -18,66 +18,186 @@
     }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-slate-50 text-slate-800">
-  <nav class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="font-bold text-alpine-800 text-lg">🏔️ אוסטריה 2026</a>
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#hero" class="font-bold text-alpine-800 text-lg">🏔️ אוסטריה 2026</a>
+      <div class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#overview" class="hover:text-alpine-600">סקירה</a>
+        <a href="#stays" class="hover:text-alpine-600">לינה</a>
+        <a href="#tips" class="hover:text-alpine-600">טיפים</a>
+        <a href="#packing" class="hover:text-alpine-600">ציוד</a>
+        <a href="#places" class="hover:text-alpine-600">מקומות</a>
+      </div>
     </div>
   </nav>
 
-  <header class="pt-24 pb-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #0c4a6e, #0ea5e9);">
+  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center" style="background: linear-gradient(135deg, #0c4a6e, #0ea5e9);">
+    <p class="text-sm tracking-widest uppercase mb-2 opacity-80">6–23 באוגוסט 2026</p>
     <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
-    <p class="text-xl mb-8">וינה · עמק הצילר · חבל זלצבורג</p>
-    <div id="countdown" class="flex justify-center gap-6">
-      <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs">ימים</div></div>
-      <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs">שעות</div></div>
-      <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs">דקות</div></div>
+    <p class="text-xl mb-8 opacity-90">וינה · עמק הצילר · חבל זלצבורג</p>
+    <div id="countdown" class="flex justify-center gap-6 text-center">
+      <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-80">ימים</div></div>
+      <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-80">שעות</div></div>
+      <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-80">דקות</div></div>
     </div>
   </header>
 
-  <section class="max-w-5xl mx-auto px-4 py-12">
+  <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">מפת הטיול</h2>
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white rounded-2xl shadow p-6 border">
+        <div class="text-3xl mb-2">🏛️</div>
+        <h3 class="font-bold text-lg">וינה</h3>
+        <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-6 border ring-2 ring-alpine-400">
+        <div class="text-3xl mb-2">🏔️</div>
+        <h3 class="font-bold text-lg">טירול · צילרטאל</h3>
+        <p class="text-sm text-slate-500">8–16/8 (8 לילות)</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-6 border">
+        <div class="text-3xl mb-2">🌲</div>
+        <h3 class="font-bold text-lg">זלצבורג · פלחאו</h3>
+        <p class="text-sm text-slate-500">16–22/8 (6 לילות)</p>
+      </div>
+    </div>
+    <div id="map" class="h-80 rounded-xl shadow"></div>
+  </section>
+
+  <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">לינה</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <a href="https://www.nh-hotels.com/en/hotel/nh-vienna-airport" target="_blank" class="block bg-white rounded-2xl shadow overflow-hidden border hover:ring-2 hover:ring-alpine-400">
+        <div class="bg-alpine-700 text-white p-4"><h3 class="font-bold">NH Conference Center</h3></div>
+        <div class="p-5 text-sm"><p>6–8/8 + 22–23/8</p><p class="text-xs text-slate-500 mt-1">שדה התעופה וינה</p></div>
+      </a>
+      <a href="https://www.booking.com/hotel/at/chalet-wildruh.en-gb.html" target="_blank" class="block bg-white rounded-2xl shadow overflow-hidden border hover:ring-2 hover:ring-green-400">
+        <div class="bg-green-700 text-white p-4"><h3 class="font-bold">Chalet Wildruh</h3></div>
+        <div class="p-5 text-sm"><p>8–16/8 (8 לילות)</p><p class="text-xs text-slate-500 mt-1">צילר · טירול</p></div>
+      </a>
+      <a href="https://www.booking.com/hotel/at/appartmenthaus-phantasia.en-gb.html" target="_blank" class="block bg-white rounded-2xl shadow overflow-hidden border hover:ring-2 hover:ring-purple-400">
+        <div class="bg-purple-700 text-white p-4"><h3 class="font-bold">Appartmenthaus Phantasia</h3></div>
+        <div class="p-5 text-sm"><p>16–22/8 (6 לילות)</p><p class="text-xs text-slate-500 mt-1">פלחאו · זלצבורג</p></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="tips" class="bg-alpine-50 py-12">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">טיפים חשובים</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="font-bold mb-2">🎫 כרטיסים</h3>
+          <ul class="text-sm space-y-1">
+            <li>• <a href="https://www.zillertal.at/en/summer/activecard" target="_blank" class="text-alpine-600 underline">Zillertal Activecard</a></li>
+            <li>• <a href="https://www.salzburgerland-card.at/" target="_blank" class="text-alpine-600 underline">Salzburgerland Card</a></li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <h3 class="font-bold mb-2">🌧️ ימים גשומים</h3>
+          <ul class="text-sm space-y-1">
+            <li>• <a href="https://www.swarovski.com/en-GB/" target="_blank" class="text-alpine-600 underline">סברובסקי</a></li>
+            <li>• <a href="https://www.silberbergwerk.at/" target="_blank" class="text-alpine-600 underline">מכרה הכסף</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packing" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">ציוד + Checklist</h2>
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">👕 בגדים</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> בגדים להחלפה</li>
+          <li><input type="checkbox" class="mr-2"> מעילים חמים</li>
+          <li><input type="checkbox" class="mr-2"> בגדי ים + מגבות</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">🎒 תיק יומי</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> תיק בריכה</li>
+          <li><input type="checkbox" class="mr-2"> מזומן</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">📋 מסמכים</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> דרכונים</li>
+          <li><input type="checkbox" class="mr-2"> אישורי מלון</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="places" class="max-w-5xl mx-auto px-4 py-12 bg-white">
     <h2 class="text-3xl font-bold text-center mb-8">מקומות מרכזיים</h2>
 
     <h3 class="text-xl font-bold text-green-700 mb-4">🏔️ טירול</h3>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-      <div class="bg-white rounded-2xl shadow overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Swarovski area">
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Swarovski">
         <div class="p-4">
           <h3 class="font-bold">Swarovski Kristallwelten</h3>
-          <a href="https://www.swarovski.com/en-GB/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2">
+            <a href="https://www.swarovski.com/en-GB/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Swarovski+Kristallwelten" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">Google</a>
+          </div>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Zillertal mountains">
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Zillertal">
         <div class="p-4">
-          <h3 class="font-bold">צילרטאל</h3>
+          <h3 class="font-bold">צילרטאל / Ahornbahn</h3>
+          <div class="flex gap-2 mt-2">
+            <a href="https://www.ahornbahn.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+          </div>
         </div>
       </div>
-      <div class="bg-white rounded-2xl shadow overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Mine / cave">
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Mine">
         <div class="p-4">
           <h3 class="font-bold">מכרה הכסף</h3>
-          <a href="https://www.silberbergwerk.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2">
+            <a href="https://www.silberbergwerk.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+          </div>
         </div>
       </div>
     </div>
 
     <h3 class="text-xl font-bold text-purple-700 mb-4">🌲 זלצבורג</h3>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white rounded-2xl shadow overflow-hidden">
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
         <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Waterfall">
         <div class="p-4">
           <h3 class="font-bold">מפלי קרימל</h3>
-          <a href="https://www.krimml-wasserwelten.at/" target="_blank" class="text-xs text-alpine-600 underline">אתר</a>
+          <div class="flex gap-2 mt-2">
+            <a href="https://www.krimml-wasserwelten.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow overflow-hidden border">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop" class="w-full h-48 object-cover" alt="Glacier">
+        <div class="p-4">
+          <h3 class="font-bold">קרחון קיצשטיינהורן</h3>
+          <div class="flex gap-2 mt-2">
+            <a href="https://www.kitzsteinhorn.at/" target="_blank" class="text-xs bg-slate-100 px-2 py-1 rounded">אתר</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <footer class="bg-slate-900 text-white py-8 text-center">
-    <p class="font-bold">אוסטריה 2026</p>
+    <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
+    <p class="text-sm opacity-80 mt-1">6–23 באוגוסט</p>
   </footer>
 
   <script src="script.js"></script>
