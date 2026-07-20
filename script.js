@@ -77,7 +77,7 @@ const allPlaces = [
   { name: 'Triassic Park', coords: [47.485, 12.545] },
 
   // ——— Salzburg region ———
-  { name: 'פלחאו (Phantasia)', coords: [47.345, 13.392] },
+  { name: 'פלכאו (Phantasia)', coords: [47.345, 13.392] },
   { name: 'Salzburg Zoo', coords: [47.804, 13.052] },
   { name: 'Hopsiland Planai', coords: [47.392, 13.688] },
   { name: "Flori's Path", coords: [47.352, 13.395] },
