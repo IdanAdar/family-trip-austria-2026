@@ -103,11 +103,19 @@ if (mapEl) {
   allPlaces.forEach(p => {
     const marker = L.marker(p.coords).addTo(map);
     const popupContent = `
-      <strong>${p.name}</strong><br>
-      <a href="https://www.google.com/maps/search/?api=1&query=${p.coords[0]},${p.coords[1]}" target="_blank" class="nav-btn gmaps text-xs inline-block mt-2">📍 Google Maps</a>
-      <a href="https://waze.com/ul?ll=${p.coords[0]},${p.coords[1]}&navigate=yes" target="_blank" class="nav-btn text-xs inline-block mt-2">Waze</a>
+      <div style="min-width: 180px;">
+        <strong>${p.name}</strong><br><br>
+        <a href="https://www.google.com/maps/search/?api=1&query=${p.coords[0]},${p.coords[1]}" target="_blank" 
+           style="display:inline-block; background:#eff6ff; color:#1d4ed8; padding:6px 12px; border-radius:6px; text-decoration:none; font-size:13px; margin-right:8px;">
+          📍 Google Maps
+        </a>
+        <a href="https://waze.com/ul?ll=${p.coords[0]},${p.coords[1]}&navigate=yes" target="_blank" 
+           style="display:inline-block; background:#f1f5f9; color:#334155; padding:6px 12px; border-radius:6px; text-decoration:none; font-size:13px;">
+          Waze
+        </a>
+      </div>
     `;
-    marker.bindPopup(popupContent);
+    marker.bindPopup(popupContent, { closeButton: true, offset: [0, -5] });
   });
 }
 
