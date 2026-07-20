@@ -23,7 +23,7 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 
-// Map - must be initialized BEFORE the click handlers that use it
+// Map
 const mapEl = document.getElementById('map');
 let map = null;
 if (mapEl) {
@@ -47,23 +47,21 @@ if (mapEl) {
   });
 }
 
-// Make overview region cards clickable to zoom map
-// New visual order: 0 = Tyrol, 1 = Salzburg, 2 = Vienna
+// Region cards – match by name text (works regardless of DOM/RTL order)
 const mapCards = document.querySelectorAll('#overview .region-card');
 if (mapCards.length && map) {
-  mapCards.forEach((card, index) => {
+  mapCards.forEach(card => {
     card.addEventListener('click', () => {
       mapCards.forEach(c => c.classList.remove('ring-2', 'ring-alpine-400'));
       card.classList.add('ring-2', 'ring-alpine-400');
 
-      if (index === 0) {
-        // טירול · צילרטאל
+      const title = card.querySelector('h3')?.textContent || '';
+
+      if (title.includes('טירול')) {
         map.flyTo([47.23, 11.87], 10);
-      } else if (index === 1) {
-        // זלצבורג · פלחאו
+      } else if (title.includes('זלצבורג')) {
         map.flyTo([47.34, 13.39], 10);
-      } else if (index === 2) {
-        // וינה
+      } else if (title.includes('וינה')) {
         map.flyTo([48.11, 16.57], 12);
       }
     });
