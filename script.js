@@ -64,12 +64,12 @@ const allPlaces = [
   { name: 'Hopsiland Planai', coords: [47.392, 13.688] },
 ];
 
-// Map
+// Map – start focused on Tyrol (matches default selected region card)
 const mapEl = document.getElementById('map');
 let map = null;
 
 if (mapEl) {
-  map = L.map('map').setView([47.4, 12.5], 7);
+  map = L.map('map').setView([47.30, 11.85], 9);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
   }).addTo(map);
