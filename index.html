@@ -1,1 +1,800 @@
-the full previous content from previous read
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>אוסטריה 2026 · טיול משפחתי</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            alpine: {50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e'}
+          },
+          fontFamily: {sans: ['Heebo', 'system-ui', 'sans-serif']}
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .stay-card { transition: all 0.2s ease; border: 2px solid transparent; }
+    .stay-card:hover { border-color: #0ea5e9; transform: translateY(-2px); }
+    a.maps-link { color: #0284c7; text-decoration: none; font-size: 0.875rem; }
+    a.maps-link:hover { opacity: 0.8; }
+    .translate-btn {
+      font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.55rem;
+      border-radius: 0.4rem; border: 1px solid #cbd5e1; background: #fff;
+      color: #334155; cursor: pointer; transition: all 0.15s ease;
+    }
+    .translate-btn:hover { background: #f1f5f9; border-color: #94a3b8; }
+    .place-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 0.75rem; overflow: hidden; }
+    .place-card img { width: 100%; height: 9rem; object-fit: cover; }
+    .place-card .map-embed { width: 100%; height: 7.5rem; border: 0; display: block; }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      font-size: 0.75rem; font-weight: 600; padding: 0.35rem 0.65rem;
+      border-radius: 0.4rem; background: #f1f5f9; color: #334155;
+    }
+    .nav-btn:hover { background: #e2e8f0; }
+    .nav-btn.gmaps { background: #eff6ff; color: #1d4ed8; }
+    .nav-btn.gmaps:hover { background: #dbeafe; }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: #0284c7;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
+      <div class="hidden md:flex gap-5 text-sm font-medium">
+        <a href="#overview" class="hover:text-alpine-600">סקירה</a>
+        <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
+        <a href="#cars" class="hover:text-alpine-600">רכבים</a>
+        <a href="#stays" class="hover:text-alpine-600">לינה</a>
+        <a href="#packing" class="hover:text-alpine-600">ציוד</a>
+      </div>
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
+        <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[480px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
+    <div class="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+      <p class="text-sm tracking-widest uppercase mb-2 opacity-95">6–23 באוגוסט 2026</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
+      <p class="text-xl mb-8 opacity-95">וינה · עמק הצילר · חבל זלצבורג</p>
+      <div id="countdown" class="flex justify-center gap-6 text-center">
+        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-90">ימים</div></div>
+        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-90">שעות</div></div>
+        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-90">דקות</div></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">מפת הטיול</h2>
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="region-card bg-white rounded-2xl shadow p-6 border ring-2 ring-alpine-400 cursor-pointer">
+        <div class="text-3xl mb-2">🏔️</div>
+        <h3 class="font-bold text-lg">טירול · צילרטאל</h3>
+        <p class="text-sm text-slate-500">8–16/8 (8 לילות)</p>
+      </div>
+      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
+        <div class="text-3xl mb-2">🌲</div>
+        <h3 class="font-bold text-lg">זלצבורג · פלכאו</h3>
+        <p class="text-sm text-slate-500">16–22/8 (6 לילות)</p>
+      </div>
+      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
+        <div class="text-3xl mb-2">🏛️</div>
+        <h3 class="font-bold text-lg">וינה</h3>
+        <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
+      </div>
+    </div>
+    <div id="map" style="height: 420px;" class="rounded-xl shadow"></div>
+  </section>
+
+  <section id="itinerary" class="bg-white py-12">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">המסלול יום-יום</h2>
+
+      <!-- ===== VIENNA ===== -->
+      <h3 class="text-lg font-bold text-alpine-700 mb-3">וינה – הגעה</h3>
+      <div class="space-y-6 mb-10">
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">חמישי 6/8 · יום הטיסה</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop" alt="Vienna Airport">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">NH Conference Center · שדה התעופה</h4>
+                <p class="text-xs text-slate-600 mt-0.5">Family Connecting Room · conf. 157195399 · ארוחת ערב במסעדות השדה</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=48.1103,16.5697&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=NH+Vienna+Airport+Conference+Center" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=48.1103,16.5697&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שישי 7/8 · יום בוינה</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&h=400&fit=crop" alt="Prater">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🎡 פראטר</h4>
+                <p class="text-xs text-slate-600 mt-0.5">צריך מזומן! · מפגש עם גיא וללי</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=48.2167,16.3958&z=15&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Wiener+Prater" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=48.2167,16.3958&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">טל קופצת לקניון / Mariahilfer · <a href="#cars" class="text-alpine-600 underline font-medium">אפשרות איסוף רכב מ-SIXT (9:30)</a></p>
+        </div>
+      </div>
+
+      <!-- ===== TYROL ===== -->
+      <h3 class="text-lg font-bold text-green-700 mb-3">טירול · צילרטאל <span class="text-sm font-normal text-slate-500">(Zillertal Activecard)</span></h3>
+      <div class="space-y-6 mb-10">
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שבת 8/8 · נסיעה לטירול</div>
+          <p class="text-sm text-slate-700 mb-3">איסוף רכב <a href="#cars" class="text-alpine-600 underline font-medium">(אופציה 2: 08:30)</a> או נסיעה מווינה ← Chalet Wildruh · <a class="maps-link" href="https://maps.app.goo.gl/YGVpotRVPAY5epT18" target="_blank">📍 מסלול</a></p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Chalet Wildruh">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Chalet Wildruh</h4>
+                <p class="text-xs text-slate-600 mt-0.5">לינה 8–16/8 · עמק הצילר</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.233,11.866&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Chalet+Wildruh+Zillertal" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.233,11.866&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" alt="Motorikpark">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Motorikpark Ansfelden</h4>
+                <p class="text-xs text-slate-600 mt-0.5">עצירה אפשרית בדרך · הגעה סביב 11:30</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=48.212,14.289&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Motorikpark+Ansfelden" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=48.212,14.289&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="SEP BILLA">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">SEP (BILLA)</h4>
+                <p class="text-xs text-slate-600 mt-0.5">עצירה נוספת · שבת סוגרים ב-18:00</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.95,13.65&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=SEP+BILLA+Salzkammergut" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.95,13.65&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">עצירות נוספות: Action</p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">ראשון 9/8 · Ellmi's Zauberwelt</div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="place-card">
+              <img src="https://www.ellmau-going.at/fileadmin/_processed_/5/5/csm_Ellmi_s_Tag_2_FOTO%E2%80%A2GRETTER_0931_ad56757be6.jpg" alt="Ellmi">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🪄 Ellmi's Zauberwelt</h4>
+                <p class="text-xs text-slate-600 mt-0.5">~50 דק' · רכבל Hartkaiserbahn עד 17:00</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.512,12.303&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/ybMADytTA86RNQQ76" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.512,12.303&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" alt="BergKaiser">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Restaurant BergKaiser</h4>
+                <p class="text-xs text-slate-600 mt-0.5">צהריים · צמוד ליציאת הרכבל</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.512,12.303&z=15&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/Ns4NBjRKEwSQgxrE7" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.512,12.303&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=600&h=400&fit=crop" alt="Erlebnistherme">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Erlebnistherme Zillertal</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אחה"צ · פארק מים ומגלשות · ~50 דק' מאלמי</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.283,11.875&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/S1mvTh25piRzNoYb7" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.283,11.875&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-red-600 mt-3">⚠️ מתאים ביום שמשי · <strong>חובה להזמין כרטיסים מראש</strong></p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שני 10/8 · מכרה הכסף (+ אופציות)</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.tirol.co.il/uploads/15783.jpg" alt="Silver mine">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">⛏️ מכרה הכסף בשוואץ</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מתאים ליום גשום · מעילים חמים – 12° במכרה!</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.351,11.708&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/UDfcfrCuzX8VqZpV8" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.351,11.708&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=400&fit=crop" alt="Waterfall">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Harter Schleierwasserfall</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אופציה ב' · מפל + שביל יער + גשר חבלים · ~20–25 דק' הליכה</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.28,11.75&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Harter+Schleierwasserfall" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.28,11.75&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">אופציה א': DEZ Innsbruck + Smyths Toys · אפשר לסיים ב-Erlebnistherme</p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שלישי 11/8 · Hexenwasser + קיצביל</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://hexenwasser.at/app/uploads/2024/04/2023_07_Hexenwasser_1489_EBV-scaled.jpg" alt="Hexenwasser">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🧙 Hexenwasser Söll</h4>
+                <p class="text-xs text-slate-600 mt-0.5">פארק מים בהר · Söll</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.505,12.192&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Hexenwasser+Söll" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.505,12.192&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop" alt="Kitzbühel">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">קיצביל (Kitzbühel)</h4>
+                <p class="text-xs text-slate-600 mt-0.5">ביקור בעיירה</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.447,12.392&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Kitzbühel" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.447,12.392&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">רביעי 12/8 · סברובסקי + Achensee</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://cdn.prod.website-files.com/67f6317057acbbaa5ba6b6dd/6a0ff72367fe551a2fe7f158_swarovski-kristallwelten-highlights-zirkus-sujet1.avif" alt="Swarovski">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">💎 Swarovski Kristallwelten</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מתאים ליום גשום</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.294,11.604&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Swarovski+Kristallwelten" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.294,11.604&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Achensee">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Achensee</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אגם · La Vita è Bella (Maurach)</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.448,11.722&z=12&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/3GQka3wotkeZ81Qx7" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.448,11.722&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">חמישי 13/8 · Spieljochbahn</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop" alt="Spieljochbahn">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🚡 Spieljochbahn</h4>
+                <p class="text-xs text-slate-600 mt-0.5">הר החושים · כלול ב-Activecard</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.248,11.852&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/nLSRf4v5Gmk9Stk66" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.248,11.852&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" alt="Mountain Loft">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Mountain Loft Spieljoch</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מסעדה · בתוך התחנה העליונה</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.248,11.852&z=15&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/otQ472vsY5n62hNb7" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.248,11.852&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שישי 14/8 · Rosenalm</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.tyrol.com/images/f1aJqN7BRNU/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9yb3NlbmFsbWJhaG4temlsbGVydGFsLXdhbmRlcm4uanBn" alt="Rosenalm">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🌲 Rosenalm</h4>
+                <p class="text-xs text-slate-600 mt-0.5">טירת האשוח · כלול ב-Activecard</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.198,11.848&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/WvVzsyWgBMf8R6uD8" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.198,11.848&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&h=400&fit=crop" alt="Arena Coaster">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Arena Coaster</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מגלשת הרים · באותו מתחם</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.198,11.848&z=15&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/4ccLiWjviSNUBkDM8" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.198,11.848&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שבת 15/8 · Ahornbahn</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.tyrol.com/images/k33Nor7exY0/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9Ta3lSaWRlJTIwQWhvcm5fJUMyJUE5TWF5cmhvZm5lciUyMEJlcmdiYWhuZW4lMjAlMjgyJTI5LmpwZw" alt="Ahornbahn">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🚡 Ahornbahn / Mountopolis</h4>
+                <p class="text-xs text-slate-600 mt-0.5">כלול ב-Activecard · מופע עופות דורסים</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.168,11.863&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/oMGA73RgUFki1Hny9" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.168,11.863&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&h=400&fit=crop" alt="Cheese factory">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Erlebnissennerei</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מפעל גבינות · 8 דק' נסיעה · מתאים גם לגשם</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.178,11.885&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://maps.app.goo.gl/btPFw4yo6VFeo1gH6" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.178,11.885&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TRANSITION ===== -->
+      <h3 class="text-lg font-bold text-orange-600 mb-3">מעבר טירול ← זלצבורג</h3>
+      <div class="space-y-6 mb-10">
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">ראשון 16/8 · יום מעבר</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.krimmler-wasserwelten.at/Bildmaterial%20%26%20PDF%20Websites/Krimmler%20WasserWelten/1%20Die%20Krimmler%20WasserWelten/3%20Wasserpark/1781/image-thumb__1781__lightbox/Krimmler%20WasserWelten%20Wasserpark%20Neu%20%282%29.f76d8ee0.jpg" alt="Krimml">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">מפלי קרימל</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אפשרות א' · ~55 דק' נסיעה</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.211,12.172&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Krimmler+Wasserfälle" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.211,12.172&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&h=400&fit=crop" alt="Triassic Park">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Triassic Park</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אפשרות ב' · פארק דינוזאורים</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.485,12.545&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Triassic+Park+Waidring" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.485,12.545&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">הגעה לפלכאו · Appartmenthaus Phantasia</p>
+          <p class="text-xs text-slate-500 mt-1">* להתאים לפי מזג האוויר – אזור אחד יכול להיות גשום ובאחר יבש</p>
+        </div>
+      </div>
+
+      <!-- ===== SALZBURG ===== -->
+      <h3 class="text-lg font-bold text-purple-700 mb-3">זלצבורג · פלכאו <span class="text-sm font-normal text-slate-500">(SalzburgerLand Card / Flachau Card)</span></h3>
+      <p class="text-sm text-slate-600 mb-4">כרטיס הנחות: <a href="https://www.salzburgerland.com/en/salzburgerland-card/" target="_blank" class="text-alpine-600 underline">SalzburgerLand Card</a> · הטבות פלכאו: 20% בתרמה אמדה / מיניגולף, 5% בבריכת וואגריין</p>
+      <div class="space-y-6 mb-10">
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שני 17/8 · Salzburg Zoo</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=600&h=400&fit=crop" alt="Zoo">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🦁 גן החיות של זלצבורג</h4>
+                <p class="text-xs text-slate-600 mt-0.5">~40 דק' · אפשר גם גני מיראבל / Zauner</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.804,13.052&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Salzburg+Zoo" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.804,13.052&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שלישי 18/8 · Hopsiland</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://dqq9mwzzr5k9i.cloudfront.net/Planai/Sommer/Hopsiland/neue%20Stationen/41792/image-thumb__41792__lightbox/PLANAI_HOPSILAND_SOMMER2025_31_08_25-068.2aac159b.jpg" alt="Hopsiland">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🎠 Hopsiland פלאנאי</h4>
+                <p class="text-xs text-slate-600 mt-0.5">~50 דק' · Hopsi Express, מסלולי גולות · להביא צעצועי מים</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.392,13.688&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Hopsiland+Planai" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.392,13.688&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">צהריים: Schafalm · ערב: מסעדת Paulerei בפלכאו (לבדוק הזמנה)</p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">רביעי 19/8 · יום גמיש (3 אופציות)</div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop" alt="Flori Path">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Flori's Path</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אופציה 1 · שביל משחקים ביער · שטוח</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.352,13.395&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Flori's+Erlebnispfad+Flachau" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.352,13.395&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=600&h=400&fit=crop" alt="Funspace">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Funspace Flachau</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אופציה 2</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.345,13.39&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Funspace+Flachau" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.345,13.39&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?w=600&h=400&fit=crop" alt="Castle">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">טירת מאוטרנדורף</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אופציה 3 · Burg Mauterndorf</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.135,13.678&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Burg+Mauterndorf" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.135,13.678&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=600&h=400&fit=crop" alt="Jägersee">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">אגם יגר (Jägersee)</h4>
+                <p class="text-xs text-slate-600 mt-0.5">אחה"צ מומלץ · הליכה, סירות, האכלת ברווזים</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.223,13.155&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Jägersee" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.223,13.155&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-red-600 mt-3">⚠️ <strong>להביא לחם יבש!</strong></p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">חמישי 20/8 · קרחון קיצשטיינהורן</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.kitzsteinhorn.at/bilder/k-onnection/Sommer/NEU/4220/image-thumb__4220__lightbox/3K-Sommer_1.b99c95cd.jpg" alt="Kitzsteinhorn">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">❄️ קרחון קיצשטיינהורן</h4>
+                <p class="text-xs text-slate-600 mt-0.5">מומלץ ביום הכי חם · Gletscherjet1 ← Top of Salzburg</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.198,12.685&z=13&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Kitzsteinhorn" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.198,12.685&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-slate-600 mt-3">National Park Gallery + Cinema 3000 · Langwiedboden · Maisi Flitzer</p>
+          <p class="text-sm text-slate-600">ציוד חובה: מעיל/פליז, מכנסיים ארוכים, משקפי שמש, נעליים סגורות נגד החלקה</p>
+        </div>
+
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-3">שישי 21/8 · Toni's Alm + Therme Amadé + אריזה</div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="place-card">
+              <img src="https://www.hochkoenig.at/media/system/imagetext/kugelbahn-wanderweg-muehlbach-hochkoenig-3.jpg" alt="Toni">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">🎠 Toni's Almspielplatz</h4>
+                <p class="text-xs text-slate-600 mt-0.5">~35 דק' · מסלול גולות 2 ק"מ + מתקני מים</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.392,13.148&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Toni's+Almspielplatz" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.392,13.148&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+            <div class="place-card">
+              <img src="https://www.thermeamade.at/wp-content/uploads/Trichter-Rutsche-c-Erlebnis-Therme-Amad%C3%A9-e1609689463880.jpg" alt="Therme">
+              <div class="p-3">
+                <h4 class="font-bold text-sm">Therme Amadé</h4>
+                <p class="text-xs text-slate-600 mt-0.5">ירידה ~14:30 · 15 דק' · תיק בריכה מוכן ברכב</p>
+                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.338,13.395&z=14&output=embed&hl=he"></iframe>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Therme+Amadé" target="_blank">📍 Google</a>
+                  <a class="nav-btn" href="https://waze.com/ul?ll=47.338,13.395&navigate=yes" target="_blank">Waze</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-red-600 mt-3">⚠️ <strong>סגור ברביעי–חמישי!</strong> (Toni's) · ⚠️ <strong>היום צריך לארוז</strong></p>
+        </div>
+      </div>
+
+      <!-- ===== RETURN ===== -->
+      <h3 class="text-lg font-bold text-alpine-700 mb-3">חזרה לוינה</h3>
+      <div class="space-y-4">
+        <div class="bg-slate-50 rounded-xl border p-5">
+          <div class="font-bold mb-1">שבת 22/8 – ראשון 23/8 · חזרה + טיסה</div>
+          <p class="text-sm text-slate-700">נסיעה חזרה לוינה + החזרת רכב · לינה ב-NH Conference Center (conf. 157505241) · טיסה ב-23/8</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cars" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">🚗 רכבים (SIXT)</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <div class="text-xs font-bold text-alpine-600 mb-2">אפשרות 1</div>
+        <h3 class="font-bold text-lg mb-2">Premium SUV · Peugeot 5008 or similar</h3>
+        <ul class="text-sm text-slate-700 space-y-1">
+          <li><strong>הזמנה:</strong> 9735732399</li>
+          <li><strong>איסוף:</strong> 7/8/26 בשעה 09:30</li>
+          <li><strong>החזרה:</strong> 22/8 בשעה 22:00</li>
+          <li><strong>מחיר:</strong> €2,078.77</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-6">
+        <div class="text-xs font-bold text-green-700 mb-2">אפשרות 2 (מומלצת במסלול)</div>
+        <h3 class="font-bold text-lg mb-2">Peugeot 5008 or similar · PFAV</h3>
+        <ul class="text-sm text-slate-700 space-y-1">
+          <li><strong>הזמנה:</strong> 9725091740</li>
+          <li><strong>איסוף:</strong> 8/8/26 בשעה 08:30</li>
+          <li><strong>החזרה:</strong> 22/8 בשעה 19:00</li>
+          <li><strong>מחיר:</strong> €1,916.25</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 bg-white rounded-2xl shadow p-6 text-sm space-y-3">
+      <h3 class="font-bold text-base mb-1">SIXT – שדה התעופה וינה (VIE)</h3>
+      <p class="text-slate-700"><strong>כתובת:</strong> Mietwagenzentrum, Objekt 134, P4, Wien-Schwechat, 1300 Austria</p>
+      <p class="text-slate-700"><strong>מיקום:</strong> חניון P4, קומת קרקע (Level 0) – מרכז השכרת הרכבים</p>
+      <p class="text-slate-700"><strong>שעות:</strong> כל יום 06:00–00:00 (כולל חגים) · החזרה 24 שעות</p>
+      <p class="text-slate-700"><strong>אתר הסניף:</strong> <a href="https://www.sixt.com/car-rental/austria/vienna/vienna-airport/" target="_blank" class="text-alpine-600 underline">sixt.com – Vienna Airport</a></p>
+      <p class="text-slate-700"><strong>ניווט:</strong>
+        <a href="https://www.google.com/maps/search/?api=1&query=SIXT+Vienna+Airport+P4" target="_blank" class="text-alpine-600 underline">Google Maps</a> ·
+        <a href="https://waze.com/ul?q=SIXT%20Vienna%20Airport&navigate=yes" target="_blank" class="text-alpine-600 underline">Waze</a>
+      </p>
+      <div class="bg-slate-50 rounded-xl p-4 text-slate-600">
+        <p class="font-medium text-slate-800 mb-1">איך מגיעים לדלפק אחרי הנחיתה:</p>
+        <p>אחרי איסוף המזוודות ← אולם ההגעות ← שמאלה לכיוון מנהרת CAT ← דרך הדלתות ← מעלית ל-Level 0 (Car Rental Center). הדלפק בתחילת האולם.</p>
+        <p class="mt-2">החזרה: לעקוב אחרי שלטי <em>Car Rental Return</em> לחניון P4, Level 0.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">לינה</h2>
+    <div class="grid md:grid-cols-1 gap-8">
+      <!-- NH Vienna -->
+      <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
+        <div class="bg-alpine-700 text-white p-6">
+          <h3 class="font-bold text-xl">NH Conference Center Vienna Airport</h3>
+        </div>
+        <div class="p-6 space-y-6 text-sm">
+          <div>
+            <p class="font-semibold text-base mb-1">6–8 באוגוסט</p>
+            <p><strong>חדר:</strong> Family Connecting Room</p>
+            <p><strong>מספר הזמנה:</strong> 157195399</p>
+          </div>
+          <div>
+            <p class="font-semibold text-base mb-1">22–23 באוגוסט</p>
+            <p><strong>חדר:</strong> Family Connecting Room</p>
+            <p><strong>מספר הזמנה:</strong> 157505241</p>
+          </div>
+          <p class="pt-3 border-t"><strong>תשלום:</strong> במקום</p>
+          <a href="https://www.nh-hotels.com/en/hotel/nh-vienna-airport" target="_blank" class="inline-block text-alpine-600 underline">לינק לאתר המלון</a>
+        </div>
+      </div>
+
+      <!-- Chalet Wildruh -->
+      <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
+        <div class="bg-green-700 text-white p-6">
+          <h3 class="font-bold text-xl">Chalet Wildruh</h3>
+          <p class="text-sm opacity-90">עמק הצילר · 8–16/8 (8 לילות)</p>
+        </div>
+        <div class="p-6 space-y-4 text-sm">
+          <p><strong>סטטוס:</strong> שולם דרך Booking.com</p>
+          <a href="https://www.booking.com/hotel/at/chalet-wildruh.en-gb.html" target="_blank" class="inline-block text-alpine-600 underline">לינק ל-Booking</a>
+        </div>
+      </div>
+
+      <!-- Phantasia -->
+      <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
+        <div class="bg-purple-700 text-white p-6">
+          <h3 class="font-bold text-xl">Appartmenthaus Phantasia</h3>
+          <p class="text-sm opacity-90">פלכאו · 16–22/8 (6 לילות)</p>
+        </div>
+        <div class="p-6 space-y-4 text-sm">
+          <p><strong>תשלום:</strong> העברה בנקאית + מזומן לג'וזי במקום</p>
+          <a href="https://www.booking.com/hotel/at/appartmenthaus-phantasia.en-gb.html" target="_blank" class="inline-block text-alpine-600 underline">לינק ל-Booking</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packing" class="max-w-5xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold text-center mb-8">ציוד + Checklist</h2>
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">👕 בגדים</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> בגדים להחלפה (לכל יום)</li>
+          <li><input type="checkbox" class="mr-2"> מעילים חמים / פליז / סווטשירטים</li>
+          <li><input type="checkbox" class="mr-2"> מעילי גשם</li>
+          <li><input type="checkbox" class="mr-2"> בגדי ים + מגבות</li>
+          <li><input type="checkbox" class="mr-2"> נעלי הליכה נוחות</li>
+          <li><input type="checkbox" class="mr-2"> כובע / כובעי שמש</li>
+          <li><input type="checkbox" class="mr-2"> גרביים נוספים</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">🎒 תיק יומי / רכב</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> תיק בריכה (מגבות, כפכפים, מצופים)</li>
+          <li><input type="checkbox" class="mr-2"> מזומן (יורו)</li>
+          <li><input type="checkbox" class="mr-2"> בקבוקי מים + חטיפים</li>
+          <li><input type="checkbox" class="mr-2"> קרם הגנה</li>
+          <li><input type="checkbox" class="mr-2"> משקפי שמש</li>
+          <li><input type="checkbox" class="mr-2"> מטריה</li>
+          <li><input type="checkbox" class="mr-2"> צעצועי מים + לחם יבש לברווזים</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-5 shadow-sm border">
+        <h3 class="font-bold mb-3">📋 מסמכים + אחר</h3>
+        <ul class="space-y-1">
+          <li><input type="checkbox" class="mr-2"> דרכונים</li>
+          <li><input type="checkbox" class="mr-2"> אישורי מלון</li>
+          <li><input type="checkbox" class="mr-2"> אישורי רכב / ביטוח (SIXT)</li>
+          <li><input type="checkbox" class="mr-2"> כרטיסי טיסה</li>
+          <li><input type="checkbox" class="mr-2"> תרופות / ערכת עזרה ראשונה</li>
+          <li><input type="checkbox" class="mr-2"> מטענים + מתאמים</li>
+          <li><input type="checkbox" class="mr-2"> אפליקציית חניה + מדבקת גרמניה</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 text-center">
+    <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">
+    ↑
+  </button>
+
+  <script>
+    function translatePage(lang) {
+      var url = encodeURIComponent(window.location.href);
+      window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
+    }
+
+    // Back to top button visibility
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
