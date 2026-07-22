@@ -66,6 +66,15 @@
       opacity: 1;
       visibility: visible;
     }
+    .accordion-btn {
+      cursor: pointer;
+    }
+    .accordion-content {
+      display: none;
+    }
+    .accordion-content.open {
+      display: block;
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -129,18 +138,24 @@
       <h3 class="text-lg font-bold text-alpine-700 mb-3">וינה – הגעה</h3>
       <div class="space-y-6 mb-10">
 
+        <!-- Accordion for 6/8 -->
         <div class="bg-slate-50 rounded-xl border p-5">
-          <div class="font-bold mb-3">חמישי 6/8 · יום הטיסה</div>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="place-card">
-              <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop" alt="Vienna Airport">
-              <div class="p-3">
-                <h4 class="font-bold text-sm">NH Conference Center · שדה התעופה</h4>
-                <p class="text-xs text-slate-600 mt-0.5">Family Connecting Room · conf. 157195399 · ארוחת ערב במסעדות השדה</p>
-                <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=48.1103,16.5697&z=14&output=embed&hl=he"></iframe>
-                <div class="flex gap-2 mt-2 flex-wrap">
-                  <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=NH+Vienna+Airport+Conference+Center" target="_blank">📍 Google</a>
-                  <a class="nav-btn" href="https://waze.com/ul?ll=48.1103,16.5697&navigate=yes" target="_blank">Waze</a>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
+            <div>חמישי 6/8 · יום הטיסה</div>
+            <span class="text-xl">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="place-card">
+                <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=600&h=400&fit=crop" alt="Vienna Airport">
+                <div class="p-3">
+                  <h4 class="font-bold text-sm">NH Conference Center · שדה התעופה</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">Family Connecting Room · conf. 157195399 · ארוחת ערב במסעדות השדה</p>
+                  <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=48.1103,16.5697&z=14&output=embed&hl=he"></iframe>
+                  <div class="flex gap-2 mt-2 flex-wrap">
+                    <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=NH+Vienna+Airport+Conference+Center" target="_blank">📍 Google</a>
+                    <a class="nav-btn" href="https://waze.com/ul?ll=48.1103,16.5697&navigate=yes" target="_blank">Waze</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -784,6 +799,20 @@
       var url = encodeURIComponent(window.location.href);
       window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
     }
+
+    // Accordion functionality
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const isOpen = content.classList.contains('open');
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.accordion-btn span:last-child').forEach(s => s.textContent = '+');
+        if (!isOpen) {
+          content.classList.add('open');
+          btn.querySelector('span:last-child').textContent = '−';
+        }
+      });
+    });
 
     // Back to top button visibility
     const backToTop = document.getElementById('backToTop');
