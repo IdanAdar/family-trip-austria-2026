@@ -69,6 +69,18 @@
     .day-card {
       cursor: pointer;
     }
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .preview-img {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
     .accordion-content {
       display: none;
     }
@@ -140,8 +152,9 @@
 
         <!-- Accordion 6/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>חמישי 6/8 · יום הטיסה</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=200&h=120&fit=crop" class="preview-img" alt="6/8">
+            <div class="flex-1 text-right">חמישי 6/8 · יום הטיסה</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -164,8 +177,9 @@
 
         <!-- Accordion 7/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שישי 7/8 · יום בוינה</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=200&h=120&fit=crop" class="preview-img" alt="7/8">
+            <div class="flex-1 text-right">שישי 7/8 · יום בוינה</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -194,25 +208,14 @@
 
         <!-- Accordion 8/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שבת 8/8 · נסיעה לטירול</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&h=120&fit=crop" class="preview-img" alt="8/8">
+            <div class="flex-1 text-right">שבת 8/8 · נסיעה לטירול</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
             <p class="text-sm text-slate-700 mb-3">איסוף רכב <a href="#cars" class="text-alpine-600 underline font-medium">(אופציה 2: 08:30)</a> או נסיעה מווינה ← Chalet Wildruh · <a class="maps-link" href="https://maps.app.goo.gl/YGVpotRVPAY5epT18" target="_blank">📍 מסלול</a></p>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div class="place-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Chalet Wildruh">
-                <div class="p-3">
-                  <h4 class="font-bold text-sm">Chalet Wildruh</h4>
-                  <p class="text-xs text-slate-600 mt-0.5">לינה 8–16/8 · עמק הצילר</p>
-                  <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.233,11.866&z=14&output=embed&hl=he"></iframe>
-                  <div class="flex gap-2 mt-2 flex-wrap">
-                    <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Chalet+Wildruh+Zillertal" target="_blank">📍 Google</a>
-                    <a class="nav-btn" href="https://waze.com/ul?ll=47.233,11.866&navigate=yes" target="_blank">Waze</a>
-                  </div>
-                </div>
-              </div>
               <div class="place-card">
                 <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" alt="Motorikpark">
                 <div class="p-3">
@@ -237,6 +240,18 @@
                   </div>
                 </div>
               </div>
+              <div class="place-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Chalet Wildruh">
+                <div class="p-3">
+                  <h4 class="font-bold text-sm">Chalet Wildruh</h4>
+                  <p class="text-xs text-slate-600 mt-0.5">לינה 8–16/8 · עמק הצילר</p>
+                  <iframe class="map-embed mt-2 rounded-lg" loading="lazy" src="https://maps.google.com/maps?q=47.233,11.866&z=14&output=embed&hl=he"></iframe>
+                  <div class="flex gap-2 mt-2 flex-wrap">
+                    <a class="nav-btn gmaps" href="https://www.google.com/maps/search/?api=1&query=Chalet+Wildruh+Zillertal" target="_blank">📍 Google</a>
+                    <a class="nav-btn" href="https://waze.com/ul?ll=47.233,11.866&navigate=yes" target="_blank">Waze</a>
+                  </div>
+                </div>
+              </div>
             </div>
             <p class="text-sm text-slate-600 mt-3">עצירות נוספות: Action</p>
           </div>
@@ -244,8 +259,9 @@
 
         <!-- Accordion 9/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>ראשון 9/8 · Ellmi's Zauberwelt</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.ellmau-going.at/fileadmin/_processed_/5/5/csm_Ellmi_s_Tag_2_FOTO%E2%80%A2GRETTER_0931_ad56757be6.jpg?w=200&h=120&fit=crop" class="preview-img" alt="9/8">
+            <div class="flex-1 text-right">ראשון 9/8 · Ellmi's Zauberwelt</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -293,8 +309,9 @@
 
         <!-- Accordion 10/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שני 10/8 · מכרה הכסף (+ אופציות)</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.tirol.co.il/uploads/15783.jpg?w=200&h=120&fit=crop" class="preview-img" alt="10/8">
+            <div class="flex-1 text-right">שני 10/8 · מכרה הכסף (+ אופציות)</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -330,8 +347,9 @@
 
         <!-- Accordion 11/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שלישי 11/8 · Hexenwasser + קיצביל</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://hexenwasser.at/app/uploads/2024/04/2023_07_Hexenwasser_1489_EBV-scaled.jpg?w=200&h=120&fit=crop" class="preview-img" alt="11/8">
+            <div class="flex-1 text-right">שלישי 11/8 · Hexenwasser + קיצביל</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -366,8 +384,9 @@
 
         <!-- Accordion 12/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>רביעי 12/8 · סברובסקי + Achensee</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://cdn.prod.website-files.com/67f6317057acbbaa5ba6b6dd/6a0ff72367fe551a2fe7f158_swarovski-kristallwelten-highlights-zirkus-sujet1.avif?w=200&h=120&fit=crop" class="preview-img" alt="12/8">
+            <div class="flex-1 text-right">רביעי 12/8 · סברובסקי + Achensee</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -402,8 +421,9 @@
 
         <!-- Accordion 13/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>חמישי 13/8 · Spieljochbahn</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=200&h=120&fit=crop" class="preview-img" alt="13/8">
+            <div class="flex-1 text-right">חמישי 13/8 · Spieljochbahn</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -438,8 +458,9 @@
 
         <!-- Accordion 14/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שישי 14/8 · Rosenalm</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.tyrol.com/images/f1aJqN7BRNU/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9yb3NlbmFsbWJhaG4temlsbGVydGFsLXdhbmRlcm4uanBn?w=200&h=120&fit=crop" class="preview-img" alt="14/8">
+            <div class="flex-1 text-right">שישי 14/8 · Rosenalm</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -474,8 +495,9 @@
 
         <!-- Accordion 15/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שבת 15/8 · Ahornbahn</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.tyrol.com/images/k33Nor7exY0/rs:fill:1180:767/dpr:1.5/cb:/g:ce/aHR0cHM6Ly9pbXhwbGF0Zm9ybS1jdXN0LXR3LmZsbjEueW91ci1vYmplY3RzdG9yYWdlLmNvbS9tZWRpYS9Ta3lSaWRlJTIwQWhvcm5fJUMyJUE5TWF5cmhvZm5lciUyMEJlcmdiYWhuZW4lMjAlMjgyJTI5LmpwZw?w=200&h=120&fit=crop" class="preview-img" alt="15/8">
+            <div class="flex-1 text-right">שבת 15/8 · Ahornbahn</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -514,8 +536,9 @@
       <div class="space-y-6 mb-10">
         <!-- Accordion 16/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>ראשון 16/8 · יום מעבר</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.krimmler-wasserwelten.at/Bildmaterial%20%26%20PDF%20Websites/Krimmler%20WasserWelten/1%20Die%20Krimmler%20WasserWelten/3%20Wasserpark/1781/image-thumb__1781__lightbox/Krimmler%20WasserWelten%20Wasserpark%20Neu%20%282%29.f76d8ee0.jpg?w=200&h=120&fit=crop" class="preview-img" alt="16/8">
+            <div class="flex-1 text-right">ראשון 16/8 · יום מעבר</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -558,8 +581,9 @@
 
         <!-- Accordion 17/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שני 17/8 · Salzburg Zoo</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=200&h=120&fit=crop" class="preview-img" alt="17/8">
+            <div class="flex-1 text-right">שני 17/8 · Salzburg Zoo</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -582,8 +606,9 @@
 
         <!-- Accordion 18/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שלישי 18/8 · Hopsiland</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://dqq9mwzzr5k9i.cloudfront.net/Planai/Sommer/Hopsiland/neue%20Stationen/41792/image-thumb__41792__lightbox/PLANAI_HOPSILAND_SOMMER2025_31_08_25-068.2aac159b.jpg?w=200&h=120&fit=crop" class="preview-img" alt="18/8">
+            <div class="flex-1 text-right">שלישי 18/8 · Hopsiland</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -607,8 +632,9 @@
 
         <!-- Accordion 19/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>רביעי 19/8 · יום גמיש (3 אופציות)</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=120&fit=crop" class="preview-img" alt="19/8">
+            <div class="flex-1 text-right">רביעי 19/8 · יום גמיש (3 אופציות)</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -668,8 +694,9 @@
 
         <!-- Accordion 20/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>חמישי 20/8 · קרחון קיצשטיינהורן</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.kitzsteinhorn.at/bilder/k-onnection/Sommer/NEU/4220/image-thumb__4220__lightbox/3K-Sommer_1.b99c95cd.jpg?w=200&h=120&fit=crop" class="preview-img" alt="20/8">
+            <div class="flex-1 text-right">חמישי 20/8 · קרחון קיצשטיינהורן</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -694,8 +721,9 @@
 
         <!-- Accordion 21/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שישי 21/8 · Toni's Alm + Therme Amadé + אריזה</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://www.hochkoenig.at/media/system/imagetext/kugelbahn-wanderweg-muehlbach-hochkoenig-3.jpg?w=200&h=120&fit=crop" class="preview-img" alt="21/8">
+            <div class="flex-1 text-right">שישי 21/8 · Toni's Alm + Therme Amadé + אריזה</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
@@ -735,8 +763,9 @@
       <div class="space-y-4">
         <!-- Accordion 22/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
-          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3">
-            <div>שבת 22/8 – ראשון 23/8 · חזרה + טיסה</div>
+          <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=120&fit=crop" class="preview-img" alt="22/8">
+            <div class="flex-1 text-right">שבת 22/8 – ראשון 23/8 · חזרה + טיסה</div>
             <span class="text-xl">+</span>
           </button>
           <div class="accordion-content">
