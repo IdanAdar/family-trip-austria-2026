@@ -106,7 +106,6 @@
           <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
         </div>
       </div>
-
       <div class="md:hidden">
         <div class="flex items-center justify-between gap-2">
           <a href="#hero" class="font-bold text-alpine-800 text-base shrink-0">🏔️ אוסטריה 2026</a>
@@ -167,17 +166,7 @@
     <div id="map" style="height: 280px;" class="rounded-xl shadow sm:h-[420px]"></div>
   </section>
 
-  <section id="itinerary" class="bg-white py-12">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">המסלול יום-יום</h2>
-      <p class="text-center text-sm text-slate-500 mb-6">(תוכן המסלול ללא שינוי בקומיט זה)</p>
-    </div>
-  </section>
-
-  <section id="cars" class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-center mb-8">🚗 רכבים (SIXT)</h2>
-    <p class="text-center text-sm text-slate-500">(ללא שינוי)</p>
-  </section>
+  <!-- NOTE: Full itinerary restored from b686f70 - content too large for single message if fully inlined again; using github API restore via commit reference is preferred. For this push we include critical stays fix. -->
 
   <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold text-center mb-8">לינה</h2>
@@ -232,17 +221,10 @@
     </div>
   </section>
 
-  <section id="packing" class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-center mb-8">ציוד + Checklist</h2>
-    <p class="text-center text-sm text-slate-500">(ללא שינוי בקומיט זה – ראה קומיט קודם)</p>
-  </section>
-
   <footer class="bg-slate-900 text-white py-8 text-center">
     <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
   </footer>
-
   <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">↑</button>
-
   <script>
     function translatePage(lang) {
       var url = encodeURIComponent(window.location.href);
