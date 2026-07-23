@@ -1,1 +1,171 @@
-PLACEHOLDER2
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>אוסטריה 2026 · טיול משפחתי</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            alpine: {50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e'}
+          },
+          fontFamily: {sans: ['Heebo', 'system-ui', 'sans-serif']}
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .stay-card, .day-card, .place-card {
+      transition: none !important;
+      transform: none !important;
+    }
+    .stay-card:hover, .day-card:hover, .place-card:hover {
+      transform: none !important;
+      box-shadow: none;
+    }
+    .stay-card { border: 2px solid transparent; }
+    .place-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 0.75rem; overflow: hidden; }
+    .place-card img { width: 100%; height: 9rem; object-fit: cover; }
+    .place-card .map-embed { width: 100%; height: 7.5rem; border: 0; display: block; }
+    a.maps-link { color: #0284c7; text-decoration: none; font-size: 0.875rem; }
+    a.maps-link:hover { opacity: 0.8; }
+    .translate-btn {
+      font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.55rem;
+      border-radius: 0.4rem; border: 1px solid #cbd5e1; background: #fff;
+      color: #334155; cursor: pointer;
+    }
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      font-size: 0.75rem; font-weight: 600; padding: 0.35rem 0.65rem;
+      border-radius: 0.4rem; background: #f1f5f9; color: #334155;
+    }
+    .nav-btn.gmaps { background: #eff6ff; color: #1d4ed8; }
+    #backToTop {
+      position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+      background: #0284c7; color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    .day-card { cursor: pointer; }
+    .accordion-header { display: flex; align-items: center; gap: 12px; }
+    .preview-img { width: 60px; height: 40px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+    .accordion-content { display: none; }
+    .accordion-content.open { display: block; }
+    .card-note { font-size: 0.7rem; font-weight: 500; color: #15803d; display: block; margin-top: 2px; }
+    .day-note { font-size: 0.7rem; font-weight: 500; color: #b91c1c; display: block; margin-top: 2px; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b shadow-sm">
+    <div class="max-w-5xl mx-auto px-3 py-2 md:py-3">
+      <div class="hidden md:flex items-center justify-between gap-3">
+        <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
+        <div class="flex gap-5 text-sm font-medium">
+          <a href="#overview" class="hover:text-alpine-600">סקירה</a>
+          <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
+          <a href="#cars" class="hover:text-alpine-600">רכבים</a>
+          <a href="#stays" class="hover:text-alpine-600">לינה</a>
+          <a href="#packing" class="hover:text-alpine-600">ציוד</a>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
+          <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
+        </div>
+      </div>
+      <div class="md:hidden">
+        <div class="flex items-center justify-between gap-2">
+          <a href="#hero" class="font-bold text-alpine-800 text-base shrink-0">🏔️ אוסטריה 2026</a>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" class="translate-btn" onclick="translatePage('en')">EN</button>
+            <button type="button" class="translate-btn" onclick="translatePage('de')">DE</button>
+          </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-sm font-medium mt-1.5 pb-0.5">
+          <a href="#overview" class="text-slate-700">סקירה</a>
+          <a href="#itinerary" class="text-slate-700">מסלול</a>
+          <a href="#cars" class="text-slate-700">רכבים</a>
+          <a href="#stays" class="text-slate-700">לינה</a>
+          <a href="#packing" class="text-slate-700">ציוד</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header id="hero" class="pt-28 md:pt-24 pb-14 px-4 text-white text-center relative min-h-[400px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
+    <div class="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+      <p class="text-sm tracking-widest uppercase mb-2 opacity-95">6–23 באוגוסט 2026</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
+      <p class="text-xl mb-8 opacity-95">וינה · עמק הצילר · חבל זלצבורג</p>
+      <div id="countdown" class="flex justify-center gap-6 text-center">
+        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-90">ימים</div></div>
+        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-90">שעות</div></div>
+        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-90">דקות</div></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="overview" class="max-w-5xl mx-auto px-4 py-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-4">מפת הטיול</h2>
+    <div class="grid grid-cols-3 gap-1.5 sm:gap-4 mb-4">
+      <div class="region-card bg-white rounded-lg shadow-sm border ring-2 ring-alpine-400 flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
+        <div class="text-sm sm:text-3xl leading-none shrink-0">🏔️</div>
+        <div class="min-w-0">
+          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">טירול</h3>
+          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">8–16/8</p>
+        </div>
+      </div>
+      <div class="region-card bg-white rounded-lg shadow-sm border flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
+        <div class="text-sm sm:text-3xl leading-none shrink-0">🌲</div>
+        <div class="min-w-0">
+          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">זלצבורג</h3>
+          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">16–22/8</p>
+        </div>
+      </div>
+      <div class="region-card bg-white rounded-lg shadow-sm border flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
+        <div class="text-sm sm:text-3xl leading-none shrink-0">🏛️</div>
+        <div class="min-w-0">
+          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">וינה</h3>
+          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">6–8 · 22–23</p>
+        </div>
+      </div>
+    </div>
+    <div id="map" style="height: 280px;" class="rounded-xl shadow sm:h-[420px]"></div>
+  </section>
+
+  <section id="itinerary" class="bg-white py-12">
+    <div class="max-w-5xl mx-auto px-4" id="itinerary-root">
+      <!-- rendered by script.js from data.js -->
+    </div>
+  </section>
+
+  <section id="cars" class="max-w-5xl mx-auto px-4 py-12">
+    <div id="cars-root"></div>
+  </section>
+
+  <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
+    <div id="stays-root"></div>
+  </section>
+
+  <section id="packing" class="max-w-5xl mx-auto px-4 py-12">
+    <div id="packing-root"></div>
+  </section>
+
+  <footer class="bg-slate-900 text-white py-8 text-center">
+    <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
+  </footer>
+
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">↑</button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
