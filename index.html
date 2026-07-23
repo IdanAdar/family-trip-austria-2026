@@ -39,17 +39,14 @@
     .translate-btn {
       font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.55rem;
       border-radius: 0.4rem; border: 1px solid #cbd5e1; background: #fff;
-      color: #334155; cursor: pointer; transition: all 0.15s ease;
+      color: #334155; cursor: pointer;
     }
-    .translate-btn:hover { background: #f1f5f9; border-color: #94a3b8; }
     .nav-btn {
       display: inline-flex; align-items: center; gap: 0.25rem;
       font-size: 0.75rem; font-weight: 600; padding: 0.35rem 0.65rem;
       border-radius: 0.4rem; background: #f1f5f9; color: #334155;
     }
-    .nav-btn:hover { background: #e2e8f0; }
     .nav-btn.gmaps { background: #eff6ff; color: #1d4ed8; }
-    .nav-btn.gmaps:hover { background: #dbeafe; }
     #backToTop {
       position: fixed;
       bottom: 20px;
@@ -73,9 +70,7 @@
       opacity: 1;
       visibility: visible;
     }
-    .day-card {
-      cursor: pointer;
-    }
+    .day-card { cursor: pointer; }
     .accordion-header {
       display: flex;
       align-items: center;
@@ -88,18 +83,37 @@
       border-radius: 6px;
       flex-shrink: 0;
     }
-    .accordion-content {
+    .accordion-content { display: none; }
+    .accordion-content.open { display: block; }
+    /* Mobile menu */
+    #mobileMenu {
       display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 0.75rem 1rem;
     }
-    .accordion-content.open {
+    #mobileMenu.open { display: block; }
+    #mobileMenu a {
       display: block;
+      padding: 0.6rem 0.5rem;
+      font-weight: 500;
+      color: #334155;
+      border-bottom: 1px solid #f1f5f9;
     }
+    #mobileMenu a:last-child { border-bottom: none; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
-  <nav class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3 relative">
       <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
+
+      <!-- Desktop nav -->
       <div class="hidden md:flex gap-5 text-sm font-medium">
         <a href="#overview" class="hover:text-alpine-600">סקירה</a>
         <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
@@ -107,14 +121,28 @@
         <a href="#stays" class="hover:text-alpine-600">לינה</a>
         <a href="#packing" class="hover:text-alpine-600">ציוד</a>
       </div>
+
       <div class="flex items-center gap-1.5 shrink-0">
         <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
         <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
+        <!-- Hamburger for mobile -->
+        <button id="menuBtn" type="button" class="md:hidden ml-1 p-2 rounded-lg border border-slate-200 bg-white text-slate-700" aria-label="תפריט">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu dropdown -->
+      <div id="mobileMenu">
+        <a href="#overview" onclick="closeMobileMenu()">סקירה</a>
+        <a href="#itinerary" onclick="closeMobileMenu()">מסלול</a>
+        <a href="#cars" onclick="closeMobileMenu()">רכבים</a>
+        <a href="#stays" onclick="closeMobileMenu()">לינה</a>
+        <a href="#packing" onclick="closeMobileMenu()">ציוד</a>
       </div>
     </div>
   </nav>
 
-  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[480px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
+  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[420px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
     <div class="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
       <p class="text-sm tracking-widest uppercase mb-2 opacity-95">6–23 באוגוסט 2026</p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
@@ -127,26 +155,29 @@
     </div>
   </header>
 
-  <section id="overview" class="max-w-5xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold text-center mb-8">מפת הטיול</h2>
-    <div class="grid md:grid-cols-3 gap-6 mb-8">
-      <div class="region-card bg-white rounded-2xl shadow p-6 border ring-2 ring-alpine-400 cursor-pointer">
-        <div class="text-3xl mb-2">🏔️</div>
-        <h3 class="font-bold text-lg">טירול · צילרטאל</h3>
-        <p class="text-sm text-slate-500">8–16/8 (8 לילות)</p>
+  <section id="overview" class="max-w-5xl mx-auto px-4 py-10">
+    <h2 class="text-3xl font-bold text-center mb-6">מפת הטיול</h2>
+
+    <!-- Compact region cards - horizontal on mobile -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-5">
+      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border ring-2 ring-alpine-400 text-center">
+        <div class="text-xl sm:text-3xl mb-1">🏔️</div>
+        <h3 class="font-bold text-xs sm:text-base leading-tight">טירול · צילרטאל</h3>
+        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">8–16/8</p>
       </div>
-      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
-        <div class="text-3xl mb-2">🌲</div>
-        <h3 class="font-bold text-lg">זלצבורג · פלכאו</h3>
-        <p class="text-sm text-slate-500">16–22/8 (6 לילות)</p>
+      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border text-center">
+        <div class="text-xl sm:text-3xl mb-1">🌲</div>
+        <h3 class="font-bold text-xs sm:text-base leading-tight">זלצבורג · פלכאו</h3>
+        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">16–22/8</p>
       </div>
-      <div class="region-card bg-white rounded-2xl shadow p-6 border cursor-pointer">
-        <div class="text-3xl mb-2">🏛️</div>
-        <h3 class="font-bold text-lg">וינה</h3>
-        <p class="text-sm text-slate-500">6–8/8 ו-22–23/8</p>
+      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border text-center">
+        <div class="text-xl sm:text-3xl mb-1">🏛️</div>
+        <h3 class="font-bold text-xs sm:text-base leading-tight">וינה</h3>
+        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">6–8 · 22–23</p>
       </div>
     </div>
-    <div id="map" style="height: 420px;" class="rounded-xl shadow"></div>
+
+    <div id="map" style="height: 320px;" class="rounded-xl shadow sm:h-[420px]"></div>
   </section>
 
   <section id="itinerary" class="bg-white py-12">
@@ -236,7 +267,7 @@
                 </div>
               </div>
               <div class="place-card">
-                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnSqt190SfeVruuWrCSsrphPGBgMFDDbXJi2vAY9LVPXdlG5qouLKvc3hT5xMrt-_a_WPJ1IzcxGj5PvsT6uYoHXoMRIuD367SDzhoACy3devosU8sNp0fe8CVMjYc-1ZWCZyRP=w243-h406-n-k-no-nu" class="preview-img" alt="SEP Salzkammergut Familieneinkaufspark">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnSqt190SfeVruuWrCSsrphPGBgMFDDbXJi2vAY9LVPXdlG5qouLKvc3hT5xMrt-_a_WPJ1IzcxGj5PvsT6uYoHXoMRIuD367SDzhoACy3devosU8sNp0fe8CVMjYc-1ZWCZyRP=w243-h406-n-k-no-nu" alt="SEP Salzkammergut Familieneinkaufspark">
                 <div class="p-3">
                   <h4 class="font-bold text-sm">SEP – Salzkammergut Familieneinkaufspark</h4>
                   <p class="text-xs text-slate-600 mt-0.5">עצירה 2 · BILLA PLUS · ארוחת צהריים ב-le burger · שבת נסגר ב-18:00</p>
@@ -832,7 +863,6 @@
   <section id="stays" class="max-w-5xl mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold text-center mb-8">לינה</h2>
     <div class="grid md:grid-cols-1 gap-8">
-      <!-- NH Vienna -->
       <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
         <div class="bg-alpine-700 text-white p-6">
           <h3 class="font-bold text-xl">NH Conference Center Vienna Airport</h3>
@@ -853,7 +883,6 @@
         </div>
       </div>
 
-      <!-- Chalet Wildruh -->
       <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
         <div class="bg-green-700 text-white p-6">
           <h3 class="font-bold text-xl">Chalet Wildruh</h3>
@@ -865,7 +894,6 @@
         </div>
       </div>
 
-      <!-- Phantasia -->
       <div class="stay-card bg-white rounded-2xl shadow overflow-hidden">
         <div class="bg-purple-700 text-white p-6">
           <h3 class="font-bold text-xl">Appartmenthaus Phantasia</h3>
@@ -925,10 +953,7 @@
     <p class="font-bold text-lg">אוסטריה 2026 · טיול משפחתי</p>
   </footer>
 
-  <!-- Back to Top Button -->
-  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">
-    ↑
-  </button>
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="backToTop" title="חזרה למעלה">↑</button>
 
   <script>
     function translatePage(lang) {
@@ -936,15 +961,22 @@
       window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
     }
 
-    // Accordion for all day cards
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Accordion
     document.querySelectorAll('.accordion-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const content = btn.nextElementSibling;
         const isOpen = content.classList.contains('open');
-        // Close all others
-        document.querySelectorAll('.accordion-content').forEach(c => {
-          c.classList.remove('open');
-        });
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
         document.querySelectorAll('.accordion-btn span:last-child').forEach(s => s.textContent = '+');
         if (!isOpen) {
           content.classList.add('open');
@@ -953,14 +985,11 @@
       });
     });
 
-    // Back to top button visibility
+    // Back to top
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 500) {
-        backToTop.classList.add('show');
-      } else {
-        backToTop.classList.remove('show');
-      }
+      if (window.scrollY > 500) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
     });
   </script>
   <script src="script.js"></script>
