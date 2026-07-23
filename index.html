@@ -90,80 +90,8 @@
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
-  <nav class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b shadow-sm">
-    <div class="max-w-5xl mx-auto px-3 py-2 md:py-3">
-      <div class="hidden md:flex items-center justify-between gap-3">
-        <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
-        <div class="flex gap-5 text-sm font-medium">
-          <a href="#overview" class="hover:text-alpine-600">סקירה</a>
-          <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
-          <a href="#cars" class="hover:text-alpine-600">רכבים</a>
-          <a href="#stays" class="hover:text-alpine-600">לינה</a>
-          <a href="#packing" class="hover:text-alpine-600">ציוד</a>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0">
-          <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
-          <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
-        </div>
-      </div>
-      <div class="md:hidden">
-        <div class="flex items-center justify-between gap-2">
-          <a href="#hero" class="font-bold text-alpine-800 text-base shrink-0">🏔️ אוסטריה 2026</a>
-          <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
-            <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
-          </div>
-        </div>
-        <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-sm font-medium mt-1.5 pb-0.5">
-          <a href="#overview" class="text-slate-700">סקירה</a>
-          <a href="#itinerary" class="text-slate-700">מסלול</a>
-          <a href="#cars" class="text-slate-700">רכבים</a>
-          <a href="#stays" class="text-slate-700">לינה</a>
-          <a href="#packing" class="text-slate-700">ציוד</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <header id="hero" class="pt-28 md:pt-24 pb-14 px-4 text-white text-center relative min-h-[400px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
-    <div class="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-      <p class="text-sm tracking-widest uppercase mb-2 opacity-95">6–23 באוגוסט 2026</p>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
-      <p class="text-xl mb-8 opacity-95">וינה · עמק הצילר · חבל זלצבורג</p>
-      <div id="countdown" class="flex justify-center gap-6 text-center">
-        <div><div class="text-3xl font-bold" id="d">--</div><div class="text-xs opacity-90">ימים</div></div>
-        <div><div class="text-3xl font-bold" id="h">--</div><div class="text-xs opacity-90">שעות</div></div>
-        <div><div class="text-3xl font-bold" id="m">--</div><div class="text-xs opacity-90">דקות</div></div>
-      </div>
-    </div>
-  </header>
-  <section id="overview" class="max-w-5xl mx-auto px-4 py-8">
-    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-4">מפת הטיול</h2>
-    <div class="grid grid-cols-3 gap-1.5 sm:gap-4 mb-4">
-      <div class="region-card bg-white rounded-lg shadow-sm border ring-2 ring-alpine-400 flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
-        <div class="text-sm sm:text-3xl leading-none shrink-0">🏔️</div>
-        <div class="min-w-0">
-          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">טירול</h3>
-          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">8–16/8</p>
-        </div>
-      </div>
-      <div class="region-card bg-white rounded-lg shadow-sm border flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
-        <div class="text-sm sm:text-3xl leading-none shrink-0">🌲</div>
-        <div class="min-w-0">
-          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">זלצבורג</h3>
-          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">16–22/8</p>
-        </div>
-      </div>
-      <div class="region-card bg-white rounded-lg shadow-sm border flex flex-row items-center gap-1.5 px-2 py-1.5 sm:flex-col sm:items-center sm:text-center sm:p-5 sm:gap-0">
-        <div class="text-sm sm:text-3xl leading-none shrink-0">🏛️</div>
-        <div class="min-w-0">
-          <h3 class="font-bold text-[10px] sm:text-base leading-tight sm:mt-0.5">וינה</h3>
-          <p class="text-[9px] sm:text-sm text-slate-500 leading-tight">6–8 · 22–23</p>
-        </div>
-      </div>
-    </div>
-    <div id="map" style="height: 280px;" class="rounded-xl shadow sm:h-[420px]"></div>
-  </section>
-  <p style="text-align:center;padding:2rem;color:#b91c1c;font-weight:600">⚠️ שחזור מלא בתהליך — רענן בעוד דקה. אם המסלול חסר, כתוב לי.</p>
+  <!-- FULL CONTENT RESTORED IN NEXT COMMIT - temporary placeholder to fix broken state -->
+  <p style="padding:3rem;text-align:center;color:#b91c1c">שחזור בדרך... רענן עוד רגע</p>
   <script src="script.js"></script>
 </body>
 </html>
