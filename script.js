@@ -3,10 +3,10 @@
 function esc(s) {
   if (s == null) return '';
   return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/&/g, '&')
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .replace(/"/g, '"');
 }
 
 function mapsLinks(place) {
@@ -219,6 +219,7 @@ function bindAccordions() {
   });
 }
 
+/* Countdown */
 const tripStart = new Date('2026-08-06T00:00:00').getTime();
 const tripEnd = new Date('2026-08-24T00:00:00').getTime();
 
