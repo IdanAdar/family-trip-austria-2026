@@ -85,64 +85,31 @@
     }
     .accordion-content { display: none; }
     .accordion-content.open { display: block; }
-    /* Mobile menu */
-    #mobileMenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 0.75rem 1rem;
-    }
-    #mobileMenu.open { display: block; }
-    #mobileMenu a {
-      display: block;
-      padding: 0.6rem 0.5rem;
-      font-weight: 500;
-      color: #334155;
-      border-bottom: 1px solid #f1f5f9;
-    }
-    #mobileMenu a:last-child { border-bottom: none; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <nav class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3 relative">
-      <a href="#hero" class="font-bold text-alpine-800 text-lg shrink-0">🏔️ אוסטריה 2026</a>
-
-      <!-- Desktop nav -->
-      <div class="hidden md:flex gap-5 text-sm font-medium">
-        <a href="#overview" class="hover:text-alpine-600">סקירה</a>
-        <a href="#itinerary" class="hover:text-alpine-600">מסלול</a>
-        <a href="#cars" class="hover:text-alpine-600">רכבים</a>
-        <a href="#stays" class="hover:text-alpine-600">לינה</a>
-        <a href="#packing" class="hover:text-alpine-600">ציוד</a>
+    <div class="max-w-5xl mx-auto px-3 py-2">
+      <!-- Top row: logo + lang -->
+      <div class="flex items-center justify-between gap-2">
+        <a href="#hero" class="font-bold text-alpine-800 text-base sm:text-lg shrink-0">🏔️ אוסטריה 2026</a>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
+          <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
+        </div>
       </div>
-
-      <div class="flex items-center gap-1.5 shrink-0">
-        <button type="button" class="translate-btn" onclick="translatePage('en')" title="Translate to English">EN</button>
-        <button type="button" class="translate-btn" onclick="translatePage('de')" title="Auf Deutsch übersetzen">DE</button>
-        <!-- Hamburger for mobile -->
-        <button id="menuBtn" type="button" class="md:hidden ml-1 p-2 rounded-lg border border-slate-200 bg-white text-slate-700" aria-label="תפריט">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-
-      <!-- Mobile menu dropdown -->
-      <div id="mobileMenu">
-        <a href="#overview" onclick="closeMobileMenu()">סקירה</a>
-        <a href="#itinerary" onclick="closeMobileMenu()">מסלול</a>
-        <a href="#cars" onclick="closeMobileMenu()">רכבים</a>
-        <a href="#stays" onclick="closeMobileMenu()">לינה</a>
-        <a href="#packing" onclick="closeMobileMenu()">ציוד</a>
+      <!-- Nav links - always visible, second row on mobile -->
+      <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-sm font-medium mt-1.5 pb-0.5">
+        <a href="#overview" class="text-slate-700 hover:text-alpine-600">סקירה</a>
+        <a href="#itinerary" class="text-slate-700 hover:text-alpine-600">מסלול</a>
+        <a href="#cars" class="text-slate-700 hover:text-alpine-600">רכבים</a>
+        <a href="#stays" class="text-slate-700 hover:text-alpine-600">לינה</a>
+        <a href="#packing" class="text-slate-700 hover:text-alpine-600">ציוד</a>
       </div>
     </div>
   </nav>
 
-  <header id="hero" class="pt-24 pb-16 px-4 text-white text-center relative min-h-[420px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
+  <header id="hero" class="pt-28 pb-14 px-4 text-white text-center relative min-h-[400px] flex items-center justify-center" style="background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&h=900&fit=crop') center/cover;">
     <div class="relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
       <p class="text-sm tracking-widest uppercase mb-2 opacity-95">6–23 באוגוסט 2026</p>
       <h1 class="text-4xl md:text-5xl font-extrabold mb-4">אוסטריה · קיץ משפחתי</h1>
@@ -155,40 +122,38 @@
     </div>
   </header>
 
-  <section id="overview" class="max-w-5xl mx-auto px-4 py-10">
-    <h2 class="text-3xl font-bold text-center mb-6">מפת הטיול</h2>
+  <section id="overview" class="max-w-5xl mx-auto px-4 py-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center mb-4">מפת הטיול</h2>
 
-    <!-- Compact region cards - horizontal on mobile -->
-    <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-5">
-      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border ring-2 ring-alpine-400 text-center">
-        <div class="text-xl sm:text-3xl mb-1">🏔️</div>
-        <h3 class="font-bold text-xs sm:text-base leading-tight">טירול · צילרטאל</h3>
-        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">8–16/8</p>
+    <!-- Very compact region cards -->
+    <div class="grid grid-cols-3 gap-1.5 sm:gap-4 mb-4">
+      <div class="region-card bg-white rounded-lg shadow-sm p-1.5 sm:p-5 border ring-2 ring-alpine-400 text-center">
+        <div class="text-base sm:text-3xl leading-none">🏔️</div>
+        <h3 class="font-bold text-[10px] sm:text-base leading-tight mt-0.5">טירול</h3>
+        <p class="text-[9px] sm:text-sm text-slate-500">8–16/8</p>
       </div>
-      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border text-center">
-        <div class="text-xl sm:text-3xl mb-1">🌲</div>
-        <h3 class="font-bold text-xs sm:text-base leading-tight">זלצבורג · פלכאו</h3>
-        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">16–22/8</p>
+      <div class="region-card bg-white rounded-lg shadow-sm p-1.5 sm:p-5 border text-center">
+        <div class="text-base sm:text-3xl leading-none">🌲</div>
+        <h3 class="font-bold text-[10px] sm:text-base leading-tight mt-0.5">זלצבורג</h3>
+        <p class="text-[9px] sm:text-sm text-slate-500">16–22/8</p>
       </div>
-      <div class="region-card bg-white rounded-xl shadow-sm p-3 sm:p-5 border text-center">
-        <div class="text-xl sm:text-3xl mb-1">🏛️</div>
-        <h3 class="font-bold text-xs sm:text-base leading-tight">וינה</h3>
-        <p class="text-[10px] sm:text-sm text-slate-500 mt-0.5">6–8 · 22–23</p>
+      <div class="region-card bg-white rounded-lg shadow-sm p-1.5 sm:p-5 border text-center">
+        <div class="text-base sm:text-3xl leading-none">🏛️</div>
+        <h3 class="font-bold text-[10px] sm:text-base leading-tight mt-0.5">וינה</h3>
+        <p class="text-[9px] sm:text-sm text-slate-500">6–8 · 22–23</p>
       </div>
     </div>
 
-    <div id="map" style="height: 320px;" class="rounded-xl shadow sm:h-[420px]"></div>
+    <div id="map" style="height: 280px;" class="rounded-xl shadow sm:h-[420px]"></div>
   </section>
 
   <section id="itinerary" class="bg-white py-12">
     <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-8">המסלול יום-יום</h2>
 
-      <!-- ===== VIENNA ===== -->
       <h3 class="text-lg font-bold text-alpine-700 mb-3">וינה – הגעה</h3>
       <div class="space-y-6 mb-10">
 
-        <!-- Accordion 6/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=200&h=120&fit=crop" class="preview-img" alt="6/8">
@@ -213,7 +178,6 @@
           </div>
         </div>
 
-        <!-- Accordion 7/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmLPC28t8o3gv3whdDcX4wDfzVirLh7ZJQ--y3JZ8l8d6Dtdk9eGUhsb5xvVBd_e2FBebZrExvfXXOlduHMH02kWaS35Cp2wpC2kdh5f4XhAOZfDnD-0GfShWVXGiH4u9s0hqZR=s1360-w1360-h1020-rw" class="preview-img" alt="7/8">
@@ -240,11 +204,9 @@
         </div>
       </div>
 
-      <!-- ===== TYROL ===== -->
       <h3 class="text-lg font-bold text-green-700 mb-3">טירול · צילרטאל <span class="text-sm font-normal text-slate-500">(Zillertal Activecard)</span></h3>
       <div class="space-y-6 mb-10">
 
-        <!-- Accordion 8/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&h=120&fit=crop" class="preview-img" alt="8/8">
@@ -267,7 +229,7 @@
                 </div>
               </div>
               <div class="place-card">
-                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnSqt190SfeVruuWrCSsrphPGBgMFDDbXJi2vAY9LVPXdlG5qouLKvc3hT5xMrt-_a_WPJ1IzcxGj5PvsT6uYoHXoMRIuD367SDzhoACy3devosU8sNp0fe8CVMjYc-1ZWCZyRP=w243-h406-n-k-no-nu" alt="SEP Salzkammergut Familieneinkaufspark">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnSqt190SfeVruuWrCSsrphPGBgMFDDbXJi2vAY9LVPXdlG5qouLKvc3hT5xMrt-_a_WPJ1IzcxGj5PvsT6uYoHXoMRIuD367SDzhoACy3devosU8sNp0fe8CVMjYc-1ZWCZyRP=w243-h406-n-k-no-nu" alt="SEP">
                 <div class="p-3">
                   <h4 class="font-bold text-sm">SEP – Salzkammergut Familieneinkaufspark</h4>
                   <p class="text-xs text-slate-600 mt-0.5">עצירה 2 · BILLA PLUS · ארוחת צהריים ב-le burger · שבת נסגר ב-18:00</p>
@@ -295,7 +257,6 @@
           </div>
         </div>
 
-        <!-- Accordion 9/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://www.ellmau-going.at/fileadmin/_processed_/5/5/csm_Ellmi_s_Tag_2_FOTO%E2%80%A2GRETTER_0931_ad56757be6.jpg?w=200&h=120&fit=crop" class="preview-img" alt="9/8">
@@ -345,7 +306,6 @@
           </div>
         </div>
 
-        <!-- Accordion 10/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://www.tirol.co.il/uploads/15783.jpg?w=200&h=120&fit=crop" class="preview-img" alt="10/8">
@@ -383,7 +343,6 @@
           </div>
         </div>
 
-        <!-- Accordion 11/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://hexenwasser.at/app/uploads/2024/04/2023_07_Hexenwasser_1489_EBV-scaled.jpg?w=200&h=120&fit=crop" class="preview-img" alt="11/8">
@@ -420,7 +379,6 @@
           </div>
         </div>
 
-        <!-- Accordion 12/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://cdn.prod.website-files.com/67f6317057acbbaa5ba6b6dd/6a0ff72367fe551a2fe7f158_swarovski-kristallwelten-highlights-zirkus-sujet1.avif?w=200&h=120&fit=crop" class="preview-img" alt="12/8">
@@ -457,7 +415,6 @@
           </div>
         </div>
 
-        <!-- Accordion 13/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=200&h=120&fit=crop" class="preview-img" alt="13/8">
@@ -494,7 +451,6 @@
           </div>
         </div>
 
-        <!-- Accordion 14/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200&h=120&fit=crop" class="preview-img" alt="14/8">
@@ -532,7 +488,6 @@
           </div>
         </div>
 
-        <!-- Accordion 15/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=200&h=120&fit=crop" class="preview-img" alt="15/8">
@@ -571,10 +526,8 @@
         </div>
       </div>
 
-      <!-- ===== TRANSITION ===== -->
       <h3 class="text-lg font-bold text-orange-600 mb-3">מעבר טירול ← זלצבורג</h3>
       <div class="space-y-6 mb-10">
-        <!-- Accordion 16/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://www.krimmler-wasserwelten.at/Bildmaterial%20%26%20PDF%20Websites/Krimmler%20WasserWelten/1%20Die%20Krimmler%20WasserWelten/3%20Wasserpark/1781/image-thumb__1781__lightbox/Krimmler%20WasserWelten%20Wasserpark%20Neu%20%282%29.f76d8ee0.jpg?w=200&h=120&fit=crop" class="preview-img" alt="16/8">
@@ -616,12 +569,10 @@
         </div>
       </div>
 
-      <!-- ===== SALZBURG ===== -->
       <h3 class="text-lg font-bold text-purple-700 mb-3">זלצבורג · פלכאו <span class="text-sm font-normal text-slate-500">(SalzburgerLand Card / Flachau Card)</span></h3>
       <p class="text-sm text-slate-600 mb-4">כרטיס הנחות: <a href="https://www.salzburgerland.com/en/salzburgerland-card/" target="_blank" class="text-alpine-600 underline">SalzburgerLand Card</a> · הטבות פלכאו: 20% בתרמה אמדה / מיניגולף, 5% בבריכת וואגריין</p>
       <div class="space-y-6 mb-10">
 
-        <!-- Accordion 17/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=200&h=120&fit=crop" class="preview-img" alt="17/8">
@@ -646,7 +597,6 @@
           </div>
         </div>
 
-        <!-- Accordion 18/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://dqq9mwzzr5k9i.cloudfront.net/Planai/Sommer/Hopsiland/neue%20Stationen/41792/image-thumb__41792__lightbox/PLANAI_HOPSILAND_SOMMER2025_31_08_25-068.2aac159b.jpg?w=200&h=120&fit=crop" class="preview-img" alt="18/8">
@@ -672,7 +622,6 @@
           </div>
         </div>
 
-        <!-- Accordion 19/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=120&fit=crop" class="preview-img" alt="19/8">
@@ -734,7 +683,6 @@
           </div>
         </div>
 
-        <!-- Accordion 20/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://www.kitzsteinhorn.at/bilder/k-onnection/Sommer/NEU/4220/image-thumb__4220__lightbox/3K-Sommer_1.b99c95cd.jpg?w=200&h=120&fit=crop" class="preview-img" alt="20/8">
@@ -761,7 +709,6 @@
           </div>
         </div>
 
-        <!-- Accordion 21/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://www.hochkoenig.at/media/system/imagetext/kugelbahn-wanderweg-muehlbach-hochkoenig-3.jpg?w=200&h=120&fit=crop" class="preview-img" alt="21/8">
@@ -800,10 +747,8 @@
         </div>
       </div>
 
-      <!-- ===== RETURN ===== -->
       <h3 class="text-lg font-bold text-alpine-700 mb-3">חזרה לוינה</h3>
       <div class="space-y-4">
-        <!-- Accordion 22/8 -->
         <div class="day-card bg-slate-50 rounded-xl border p-5">
           <button class="w-full text-right accordion-btn flex justify-between items-center font-bold mb-3 accordion-header">
             <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=120&fit=crop" class="preview-img" alt="22/8">
@@ -961,17 +906,6 @@
       window.open('https://translate.google.com/translate?sl=he&tl=' + lang + '&u=' + url, '_blank');
     }
 
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-    }
-
-    // Accordion
     document.querySelectorAll('.accordion-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const content = btn.nextElementSibling;
@@ -985,7 +919,6 @@
       });
     });
 
-    // Back to top
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 500) backToTop.classList.add('show');
