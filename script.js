@@ -275,10 +275,13 @@ function initMap() {
       </div>`, { closeButton: true, offset: [0, -5] });
   });
 
-  document.querySelectorAll('#overview .region-card').forEach(card => {
+  document.querySelectorAll('#overview .region-card, #region-pills .region-card').forEach(card => {
+    card.style.cursor = 'pointer';
     card.addEventListener('click', () => {
-      document.querySelectorAll('#overview .region-card').forEach(c => c.classList.remove('ring-2', 'ring-alpine-400'));
-      card.classList.add('ring-2', 'ring-alpine-400');
+      document.querySelectorAll('#overview .region-card, #region-pills .region-card').forEach(c => {
+        c.classList.remove('active');
+      });
+      card.classList.add('active');
       const title = card.querySelector('h3')?.textContent || '';
       if (title.includes('טירול')) map.flyTo([47.30, 11.85], 9);
       else if (title.includes('זלצבורג')) map.flyTo([47.35, 13.30], 9);
