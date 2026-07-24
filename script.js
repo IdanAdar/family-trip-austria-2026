@@ -254,17 +254,36 @@ function updateCountdown() {
   mEl.textContent = m;
 }
 
+/* Region pills: bound independently of map so active toggle always works */
+let mapInstance = null;
+
+function bindRegionPills() {
+  const cards = document.querySelectorAll('#region-pills .region-card');
+  cards.forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function () {
+      cards.forEach(c => c.classList.remove('active'));
+      this.classList.add('active');
+      const title = (this.querySelector('h3') && this.querySelector('h3').textContent) || '';
+      if (!mapInstance) return;
+      if (title.indexOf('טירול') !== -1) mapInstance.flyTo([47.30, 11.85], 9);
+      else if (title.indexOf('זלצבורג') !== -1) mapInstance.flyTo([47.35, 13.30], 9);
+      else if (title.indexOf('וינה') !== -1) mapInstance.flyTo([48.15, 16.40], 11);
+    });
+  });
+}
+
 function initMap() {
   const mapEl = document.getElementById('map');
   if (!mapEl || typeof L === 'undefined') return;
-  const map = L.map('map').setView([47.30, 11.85], 9);
+  mapInstance = L.map('map').setView([47.30, 11.85], 9);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
-  }).addTo(map);
+  }).addTo(mapInstance);
 
   const places = (window.TRIP_DATA && window.TRIP_DATA.mapPlaces) || [];
   places.forEach(p => {
-    const marker = L.marker(p.coords).addTo(map);
+    const marker = L.marker(p.coords).addTo(mapInstance);
     marker.bindPopup(`
       <div style="min-width:180px">
         <strong>${p.name}</strong><br><br>
@@ -273,20 +292,6 @@ function initMap() {
         <a href="https://waze.com/ul?ll=${p.coords[0]},${p.coords[1]}&navigate=yes" target="_blank"
            style="display:inline-block;background:#f1f5f9;color:#334155;padding:6px 12px;border-radius:6px;text-decoration:none;font-size:13px">Waze</a>
       </div>`, { closeButton: true, offset: [0, -5] });
-  });
-
-  document.querySelectorAll('#overview .region-card, #region-pills .region-card').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-      document.querySelectorAll('#overview .region-card, #region-pills .region-card').forEach(c => {
-        c.classList.remove('active');
-      });
-      card.classList.add('active');
-      const title = card.querySelector('h3')?.textContent || '';
-      if (title.includes('טירול')) map.flyTo([47.30, 11.85], 9);
-      else if (title.includes('זלצבורג')) map.flyTo([47.35, 13.30], 9);
-      else if (title.includes('וינה')) map.flyTo([48.15, 16.40], 11);
-    });
   });
 }
 
@@ -302,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPacking();
   updateCountdown();
   setInterval(updateCountdown, 60000);
+  bindRegionPills();
   initMap();
 
   const backToTop = document.getElementById('backToTop');
