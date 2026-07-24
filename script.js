@@ -100,7 +100,7 @@ function renderItinerary() {
   const root = document.getElementById('itinerary-root');
   if (!root || !window.TRIP_DATA) return;
   const data = window.TRIP_DATA;
-  let html = '<h2 class="text-3xl font-bold text-center mb-8">המסלול יום-יום</h2>';
+  let html = '<h2 class="text-3xl font-bold text-center mb-8">מסלול</h2>';
 
   data.sections.forEach(sec => {
     html += `<h3 class="text-lg font-bold ${sec.titleClass || ''} mb-3">${sec.title}${sec.titleExtra || ''}</h3>`;
